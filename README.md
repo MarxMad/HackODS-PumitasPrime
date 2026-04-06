@@ -108,7 +108,7 @@ ODS_Pumitas/
 │   └── index_files/       ← Librerías estáticas Quarto
 ├── data/
 │   └── indicadores_ods_demo.csv   ← Datos de ejemplo (sustituir por agenda2030 / INEGI)
-├── Guia_ODS/              ← Scripts SQL y PDFs de la guía de base de datos ODS
+├── Guia_ODS/              ← Scripts SQL, PDFs y guía del servicio REST (APIs)
 ├── Correlacionobjetivos.md    ← Metas e indicadores de referencia (ODS 4, 8, 9, 10, 11)
 ├── _quarto.yml
 ├── requirements.txt
@@ -143,6 +143,10 @@ El HTML se genera en **`dashboard/index.html`**.
 
 - Indicadores oficiales México: [Agenda 2030 — indicadores](https://agenda2030.mx)
 - Lista detallada de metas y enlaces por indicador: ver [`Correlacionobjetivos.md`](Correlacionobjetivos.md)
+
+### API REST (indicadores)
+
+Guía en PDF para consumir el servicio RESTful de la plataforma: [`Guia_ODS/05_guia_servicio_RESTful.pdf`](Guia_ODS/05_guia_servicio_RESTful.pdf)
 
 ---
 
