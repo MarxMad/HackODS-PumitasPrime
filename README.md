@@ -115,6 +115,10 @@ ODS_Pumitas/
 └── README.md
 ```
 
+### Guía SQL (`Guia_ODS/`)
+
+Los scripts que crean logins (`2._Script_Crear_Login_y_Usuario.sql`) y usuarios de prueba usan literales **`REEMPLAZAR_*`**. Sustitúyelos por contraseñas fuertes **solo en tu máquina o servidor**; no subas valores reales al repositorio.
+
 ---
 
 ## Cómo ejecutar localmente

@@ -1,5 +1,7 @@
 -----------------------------------------------------------------------------------
 ------ Creacion de los usuarios
+------ NOTA: No versionar contraseñas reales. Sustituye los literales
+------       REEMPLAZAR_* antes de ejecutar en tu instancia SQL Server.
 -----------------------------------------------------------------------------------
 --------------------------------------------------------
 -----  1. Crea las cuentas a nivel de servidor 
