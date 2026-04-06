@@ -1,0 +1,20 @@
+project:
+  type: default
+  # Convención HACKODS: tablero principal en dashboard/index.qmd
+  render:
+    - dashboard/*.qmd
+
+format:
+  html:
+    theme: sandstone
+    toc: true
+    lang: es
+    fig-width: 10
+    fig-height: 7
+
+execute:
+  echo: true
+  warning: false
+  cwd: project
+
+jupyter: python3

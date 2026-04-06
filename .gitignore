@@ -1,0 +1,13 @@
+.venv/
+.quarto/
+**/_freeze/
+**/*.quarto_ipynb
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
+
+# Render antiguo en raíz (si reaparece)
+correlaciones_ods.html
+correlaciones_ods_files/
+
+/.quarto/

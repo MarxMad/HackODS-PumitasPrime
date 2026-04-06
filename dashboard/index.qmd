@@ -1,0 +1,168 @@
+---
+title: "Correlaciones entre ODS — Pumitas Prime (HACKODS UNAM)"
+subtitle: "Educación (4), trabajo decente (8), industria e innovación (9), desigualdad (10) y ciudades (11)"
+author: "Tu equipo"
+date: today
+lang: es
+format:
+  html:
+    code-fold: true
+    theme: sandstone
+    toc: true
+---
+
+## Objetivo
+
+Explorar cómo se relacionan, **a nivel estatal**, indicadores alineados con las metas que documentaste en [Correlacionobjetivos](../Correlacionobjetivos.md): finalización escolar (ODS 4), empleo informal (ODS 8), investigadores por millón (ODS 9), proporción bajo 50% de la mediana (ODS 10) y vivienda precaria urbana (ODS 11).
+
+::: callout-note
+Los valores del archivo `data/indicadores_ods_demo.csv` son **ilustrativos** (montados para el hackathon). Para el entregable final, sustitúyelos por series oficiales desde [agenda2030.mx](https://agenda2030.mx) / INEGI, con el mismo formato de columnas.
+:::
+
+
+```{python}
+#| label: setup
+import os
+import pandas as pd
+import numpy as np
+import plotly.graph_objects as go
+from pathlib import Path
+
+# Raíz del proyecto Quarto (válida aunque el .qmd esté en dashboard/)
+root = Path(os.environ.get("QUARTO_PROJECT_DIR", Path.cwd()))
+data_path = root / "data" / "indicadores_ods_demo.csv"
+df = pd.read_csv(data_path)
+
+etiquetas = {
+    "ods_4_finalizacion_prim_sec_prep": "ODS 4 · Finalización escolar (índice)",
+    "ods_8_empleo_informal": "ODS 8 · Empleo informal (%)",
+    "ods_9_investigadores_millón": "ODS 9 · Investigadores / millón hab.",
+    "ods_10_pobreza_50_mediana": "ODS 10 · Bajo 50% mediana ingreso (%)",
+    "ods_11_vivienda_precaria": "ODS 11 · Vivienda precaria urbana (%)",
+}
+
+cols_num = list(etiquetas.keys())
+df_corr = df[cols_num].copy()
+```
+
+## Vista rápida de los datos
+
+```{python}
+#| label: tbl-preview
+df.rename(columns=etiquetas).head(8)
+```
+
+## Matriz de correlación (Pearson)
+
+Los coeficientes van de -1 a 1. Valores absolutos altos sugieren que dos indicadores **suben o bajan juntos** en las entidades; un signo negativo indica relación inversa. La correlación **no implica** causalidad.
+
+```{python}
+#| label: fig-heatmap
+#| fig-cap: "Correlaciones de Pearson entre cinco indicadores (32 entidades, datos demo)."
+
+R = df_corr.corr(method="pearson")
+labels = [etiquetas[c] for c in R.columns]
+
+fig = go.Figure(
+    data=go.Heatmap(
+        z=R.values,
+        x=labels,
+        y=labels,
+        zmin=-1,
+        zmax=1,
+        colorscale="RdBu",
+        zmid=0,
+        text=np.round(R.values, 2),
+        texttemplate="%{text}",
+        colorbar=dict(title="r"),
+    )
+)
+fig.update_layout(
+    title="Matriz de correlación",
+    xaxis_tickangle=-35,
+    height=520,
+    margin=dict(l=280, r=40, t=60, b=120),
+)
+fig.show()
+```
+
+## Dispersión: educación vs trabajo informal
+
+Un ejemplo de narrativa para el jurado: a mayor **finalización escolar**, suele observarse menor **empleo informal** (en datos reales conviene validar por año y controles).
+
+```{python}
+#| label: fig-scatter
+#| fig-cap: "Cada punto es una entidad federativa (datos demo). Recta: ajuste lineal mínimos cuadrados (numpy)."
+
+x = df["ods_4_finalizacion_prim_sec_prep"].to_numpy()
+y = df["ods_8_empleo_informal"].to_numpy()
+m, b = np.polyfit(x, y, 1)
+x_line = np.linspace(x.min(), x.max(), 50)
+y_line = m * x_line + b
+
+fig = go.Figure()
+fig.add_trace(
+    go.Scatter(
+        x=x,
+        y=y,
+        mode="markers",
+        marker=dict(size=10, opacity=0.85),
+        text=df["entidad"],
+        hovertemplate="%{text}<br>x=%{x:.3f}<br>y=%{y:.1f}<extra></extra>",
+        name="Entidades",
+    )
+)
+fig.add_trace(
+    go.Scatter(
+        x=x_line,
+        y=y_line,
+        mode="lines",
+        name="Tendencia lineal",
+        line=dict(color="firebrick", width=2),
+    )
+)
+fig.update_layout(
+    title="ODS 4 vs ODS 8",
+    xaxis_title=etiquetas["ods_4_finalizacion_prim_sec_prep"],
+    yaxis_title=etiquetas["ods_8_empleo_informal"],
+    height=480,
+    legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
+)
+fig.show()
+```
+
+
+## Barras: correlación de cada indicador con “finalización escolar”
+
+```{python}
+#| label: fig-bars
+base = "ods_4_finalizacion_prim_sec_prep"
+others = [c for c in cols_num if c != base]
+r_series = pd.Series({etiquetas[o]: R.loc[base, o] for o in others})
+
+fig = go.Figure(
+    data=go.Bar(
+        x=r_series.values,
+        y=r_series.index,
+        orientation="h",
+        marker_color=np.where(r_series.values >= 0, "#2E86AB", "#C73E1D"),
+    )
+)
+fig.update_layout(
+    title=f"Correlación con: {etiquetas[base]}",
+    xaxis_title="Correlación de Pearson (r)",
+    yaxis=dict(autorange="reversed"),
+    height=360,
+    margin=dict(l=280),
+)
+fig.add_vline(x=0, line_width=1, line_dash="dash", line_color="gray")
+fig.show()
+```
+
+## Cómo conectar con tus fuentes reales
+
+1. Descarga series por entidad desde los enlaces de `Correlacionobjetivos.md` (por ejemplo 4.1.2, 8.3.1, 9.5.2, 10.2.1, 11.1.1).
+2. Unifica **mismo año** (o promedio móvil) y **misma cobertura** geográfica.
+3. Reemplaza `data/indicadores_ods_demo.csv` manteniendo columnas numéricas + `entidad`; vuelve a renderizar con `quarto render dashboard/index.qmd` (o `quarto render` desde la raíz del proyecto).
+
+La carpeta `Guia_ODS` con scripts SQL sirve si tu equipo centraliza indicadores en una base propia; el flujo de Quarto solo necesita el CSV (o lectura SQL vía `pandas.read_sql` si más adelante conectas la BD).
