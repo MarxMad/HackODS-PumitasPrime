@@ -11,14 +11,30 @@ format:
     toc: true
 ---
 
-## Objetivo
+## Línea del proyecto
 
-Explorar cómo se relacionan, **a nivel estatal**, indicadores alineados con las metas que documentaste en [Correlacionobjetivos](../Correlacionobjetivos.md): finalización escolar (ODS 4), empleo informal (ODS 8), investigadores por millón (ODS 9), proporción bajo 50% de la mediana (ODS 10) y vivienda precaria urbana (ODS 11).
+Este tablero apoya una **pregunta de política pública**: *¿en qué estados los indicadores de educación (ODS 4), trabajo decente (ODS 8), innovación (ODS 9), desigualdad (ODS 10) y ciudad (ODS 11) **suelen ir de la mano***, de forma que convenga plantear **respuestas coordinadas entre dependencias** y **pilotos territoriales** en lugar de solo escalar un programa aislado? La evidencia aquí es **asociativa** (correlación): sirve para **priorizar** y **dialogar en gabinete**; la **causalidad** se aborda con evaluaciones y diseños empíricos posteriores.
+
+**¿Quién lo usa y para qué?** Titulares y equipos técnicos de política social, economía, educación, ciencia y desarrollo urbano (diagnóstico y priorización); investigación aplicada (delimitar preguntas evaluables); y divulgación. Referencia de metas: [Correlacionobjetivos](../Correlacionobjetivos.md).
 
 ::: callout-note
 Los valores del archivo `data/indicadores_ods_demo.csv` son **ilustrativos** (montados para el hackathon). Para el entregable final, sustitúyelos por series oficiales desde [agenda2030.mx](https://agenda2030.mx) / INEGI, con el mismo formato de columnas.
 :::
 
+## Diez preguntas de investigación (correlación entre ODS 4, 8, 9, 10 y 11)
+
+Estas preguntas **orientan** el análisis del tablero: cada una puede contrastarse con la **matriz de correlación** y las **gráficas** (siempre como asociación, no como prueba causal).
+
+1. **ODS 4 ↔ ODS 8:** ¿Las entidades con mayor finalización escolar tienden a exhibir menor proporción de empleo informal, o el patrón es heterogéneo?
+2. **ODS 4 ↔ ODS 9:** ¿El logro educativo coexiste con mayor intensidad de investigación (investigadores por millón de habitantes) a nivel estatal?
+3. **ODS 4 ↔ ODS 10:** ¿Un mejor desempeño educativo se asocia con menor proporción de población bajo el 50% de la mediana de ingreso?
+4. **ODS 4 ↔ ODS 11:** ¿La educación se vincula con menor rezago de vivienda precaria en zonas urbanas, o aparecen desacoples territoriales?
+5. **ODS 8 ↔ ODS 10:** ¿La informalidad laboral se asocia con mayor pobreza relativa (ingreso), sugiriendo un frente común de política social y laboral?
+6. **ODS 9 ↔ ODS 8:** ¿Mayor capacidad de innovación acompaña a menor informalidad (complementariedad productiva) o no hay relación lineal clara?
+7. **ODS 9 ↔ ODS 11:** ¿La innovación medida por ciencia y tecnología se relaciona con mejores condiciones urbanas, o priman otros factores?
+8. **ODS 10 ↔ ODS 11:** ¿La desigualdad de ingreso y el rezago habitacional urbano avanzan en paralelo entre estados?
+9. **ODS 8 ↔ ODS 11:** ¿El empleo informal se asocia con mayor proporción de vivienda precaria, abriendo preguntas sobre trabajo decente y territorio?
+10. **Síntesis (red de cinco ODS):** ¿Qué pares de indicadores muestran las asociaciones más fuertes en el mapa estatal y qué **paquetes de política** (educación + empleo + CTI + inclusión + ciudad) merecerían diseñarse de forma coordinada para investigación y evaluación posterior?
 
 ```{python}
 #| label: setup

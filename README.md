@@ -1,163 +1,192 @@
 <div align="center">
 
 # Pumitas Prime
-
-### Correlaciones entre Objetivos de Desarrollo Sostenible · HACKODS UNAM
-
-Exploramos **cómo se relacionan** indicadores de la Agenda 2030 **a nivel estatal** (México), con un tablero interactivo construido en **Quarto** y **Plotly**.
+### Correlaciones ODS 4, 8, 9, 10 y 11 · HackODS UNAM 2026
 
 [![Quarto](https://img.shields.io/badge/Quarto-75AADB?style=for-the-badge&logo=quarto&logoColor=white)](https://quarto.org/)
-[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Plotly](https://img.shields.io/badge/Plotly-239120?style=for-the-badge&logo=plotly&logoColor=white)](https://plotly.com/python/)
-
-[![Repo](https://img.shields.io/badge/GitHub-HackODS--PumitasPrime-181717?style=for-the-badge&logo=github)](https://github.com/MarxMad/HackODS-PumitasPrime)
-
-<br/>
-
-| <sub>ODS en foco</sub> |
-| :---: |
-| **4 · 8 · 9 · 10 · 11** |
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Licencia CC BY-SA](https://img.shields.io/badge/Licencia-CC_BY--SA_4.0-lightgrey?style=for-the-badge)](LICENSE)
 
 </div>
 
----
+## Datos del equipo (formato rúbrica)
 
-## Alcance del proyecto
+| Campo | Valor |
+| --- | --- |
+| **Nombre del equipo** | Pumitas Prime |
+| **Repositorio** | [MarxMad/HackODS-PumitasPrime](https://github.com/MarxMad/HackODS-PumitasPrime) |
+| **ODS elegidos** | 4, 8, 9, 10, 11 |
+| **Integrantes** | _Agregar nombres completos y rol breve_ |
+| **Fecha de actualización** | 2026-04-10 |
 
-Este repositorio concentra el **tablero de correlaciones** y el material de apoyo (guías SQL, notas de indicadores). Nos basamos en **cinco ODS** que enlazan educación, economía, industria, equidad y territorio urbano.
+## Línea del proyecto
 
-<table>
-<tr>
-<td width="20%" align="center">
-<a href="https://www.un.org/sustainabledevelopment/es/education/">
-<img src="https://img.shields.io/badge/ODS_4-Educación_de_calidad-C5192D?style=for-the-badge" alt="ODS 4" />
-</a>
-<br/><sub>Finalización escolar, equidad, infraestructura educativa</sub>
-</td>
-<td width="20%" align="center">
-<a href="https://www.un.org/sustainabledevelopment/es/economic-growth/">
-<img src="https://img.shields.io/badge/ODS_8-Trabajo_decente-A21942?style=for-the-badge" alt="ODS 8" />
-</a>
-<br/><sub>Empleo, productividad, informalidad, inclusion financiera</sub>
-</td>
-<td width="20%" align="center">
-<a href="https://www.un.org/sustainabledevelopment/es/infrastructure/">
-<img src="https://img.shields.io/badge/ODS_9-Industria_e_innovación-FD6925?style=for-the-badge" alt="ODS 9" />
-</a>
-<br/><sub>Manufactura, I+D, infraestructura, tecnología</sub>
-</td>
-<td width="20%" align="center">
-<a href="https://www.un.org/sustainabledevelopment/es/inequality/">
-<img src="https://img.shields.io/badge/ODS_10-Reducción_desigualdades-DD1367?style=for-the-badge" alt="ODS 10" />
-</a>
-<br/><sub>Ingresos, pobreza relativa, política fiscal y Gini</sub>
-</td>
-<td width="20%" align="center">
-<a href="https://www.un.org/sustainabledevelopment/es/cities/">
-<img src="https://img.shields.io/badge/ODS_11-Ciudades_sostenibles-FD9D24?style=for-the-badge" alt="ODS 11" />
-</a>
-<br/><sub>Vivienda, movilidad, residuos, aire, espacio público</sub>
-</td>
-</tr>
-</table>
+**En una frase:** damos a las dependencias de gobierno una **foto estatal** de cómo se **combinan** educación, trabajo decente, innovación, desigualdad y ciudad, para **decidir dónde pilotar políticas integradas** y **qué secretarías conviene alinear** antes de invertir en evaluación de impacto.
 
-```mermaid
-flowchart LR
-  subgraph foco["Enfoque del tablero"]
-    A["ODS 4<br/>Educación"]
-    B["ODS 8<br/>Trabajo decente"]
-    C["ODS 9<br/>Industria / innovación"]
-    D["ODS 10<br/>Desigualdad"]
-    E["ODS 11<br/>Ciudades"]
-  end
-  A <--> B
-  A <--> C
-  B <--> D
-  C <--> E
-  D <--> E
-  A -. indicadores por entidad .-> M[("Matriz de<br/>correlación")]
-  B -. Pearson + scatter .-> M
-  C -. Pearson + scatter .-> M
-  D -. Pearson + scatter .-> M
-  E -. Pearson + scatter .-> M
-```
+## Pregunta que queremos resolver
 
-> Cada nodo representa un **eje de la Agenda 2030** en el que anclamos indicadores. El tablero **no afirma causalidad**: muestra **asociaciones** entre variables estatales para narrar prioridades y preguntas de política pública.
+**Pregunta guía (enfoque gubernamental):**  
+_¿En qué entidades federativas los rezagos o avances en ODS 4, 8, 9, 10 y 11 **tienden a presentarse juntos**, de modo que tenga sentido diseñar **respuestas públicas coordinadas** (no solo programas aislados), y qué pares de dimensiones deberían ser prioridad en la agenda de gabinete y en la evidencia a generar?_
 
----
+**Hipótesis de política pública (exploratoria, no causal):** los indicadores de estos cinco ODS **no se distribuyen al azar** entre estados: donde aparece un rezago fuerte en una dimensión, con frecuencia **coexisten** desviaciones en otras (por ejemplo educación + informalidad + pobreza relativa, o ciudad + desigualdad). Si ese patrón se confirma en los datos oficiales, **la política pública eficiente** no debería depender solo de metas sectoriales desarticuladas, sino de **paquetes territoriales** (educación + empleo + CTI + inclusión + vivienda/urbano) sujetos luego a **evaluación rigurosa**. El tablero sirve para **ubicar esos patrones** y **justificar ex ante** dónde conviene instrumentar pilotos integrados y estudios de seguimiento.
 
-## Vista rápida del tablero
+> Metodología: **correlación de Pearson** a nivel estatal. **No demuestra** que un programa cause un resultado; **sí ayuda** a priorizar territorios y combinaciones de agenda para diseño y evaluación de políticas.
 
-| Elemento | Qué verás |
-| -------- | --------- |
-| **Mapa de calor** | Correlaciones de Pearson entre indicadores seleccionados |
-| **Dispersión** | Relación bivariada (ej. educación vs empleo informal) con tendencia |
-| **Barras** | Correlación de cada indicador respecto a una variable base |
+## Diez preguntas de investigación (ODS 4–11 y correlación)
 
-Abre el informe renderizado: [`dashboard/index.html`](dashboard/index.html) (tras clonar) o navega al archivo en [el repositorio](https://github.com/MarxMad/HackODS-PumitasPrime/tree/main/dashboard).
+Lo que “resolvemos” aquí es **acotar y priorizar preguntas** que luego pueden llevarse a modelos, evaluaciones o políticas. El tablero permite ver si los datos **co-mueven** en el mismo sentido entre entidades.
 
----
+1. **ODS 4 ↔ ODS 8:** ¿Mayor finalización escolar se asocia con menor empleo informal?
+2. **ODS 4 ↔ ODS 9:** ¿Mejor desempeño educativo acompaña a mayor intensidad de investigación estatal?
+3. **ODS 4 ↔ ODS 10:** ¿La educación se asocia con menor proporción bajo el 50% de la mediana de ingreso?
+4. **ODS 4 ↔ ODS 11:** ¿El logro educativo se relaciona con menor vivienda precaria urbana?
+5. **ODS 8 ↔ ODS 10:** ¿La informalidad laboral y la pobreza relativa por ingreso tienden a alinearse territorialmente?
+6. **ODS 9 ↔ ODS 8:** ¿Innovación e informalidad muestran un patrón de complemento o de tensión entre estados?
+7. **ODS 9 ↔ ODS 11:** ¿La capacidad de innovación se asocia con mejores condiciones urbanas?
+8. **ODS 10 ↔ ODS 11:** ¿Desigualdad de ingreso y rezago urbano habitacional coevolucionan en el mapa estatal?
+9. **ODS 8 ↔ ODS 11:** ¿El empleo informal se asocia con mayor vivienda precaria urbana?
+10. **Síntesis:** ¿Qué enlaces son los más fuertes en la matriz de correlación y qué **agendas cruzadas** (educación, trabajo, CTI, inclusión, ciudad) conviene investigar o diseñar de forma integrada?
 
-## Estructura del repo
+La versión contextualizada está en el tablero: `dashboard/index.qmd`.
 
-```
+## Público y para qué lo usarían
+
+| Usuario | Para qué lo utiliza |
+| --- | --- |
+| **Equipos de política pública** (federal, estatal, municipal) | Comparar entidades, detectar **patrones territoriales** y formular **preguntas** para programas sectoriales (educación, empleo, ciencia, inclusión, vivienda-urbano). |
+| **Investigación** (universidad, think tanks) | Plantear **hipótesis** y delimitar **variables** para trabajos cuantitativos posteriores; citar fuentes oficiales cuando el dataset pase de demo a producción. |
+| **Sociedad civil y medios** | **Comunicar** de forma accesible cómo se relacionan dimensiones del desarrollo en el mapa estatal, sin simplificar en “una sola causa”. |
+| **Estudiantes / hackathon** | Aprender a **conectar ODS con datos** y a documentar límites del análisis. |
+
+**Audiencia principal:** tomadores de decisión y equipos técnicos que necesitan una **vista rápida, verificable y reproducible** del país en clave ODS 4–11.
+
+**Audiencia secundaria:** académicos y analistas que reutilicen el repositorio como **punto de partida** (código + metadatos + narrativa).
+
+## ODS en foco
+
+- **ODS 4** Educación de calidad
+- **ODS 8** Trabajo decente y crecimiento económico
+- **ODS 9** Industria, innovación e infraestructura
+- **ODS 10** Reducción de desigualdades
+- **ODS 11** Ciudades y comunidades sostenibles
+
+## Visualizaciones del prototipo
+
+- **Matriz de correlación (Pearson)** entre cinco indicadores.
+- **Dispersión** ODS 4 vs ODS 8 con tendencia lineal.
+- **Barras horizontales** de correlación contra variable base (ODS 4).
+
+Tablero: `dashboard/index.qmd`  
+Render: `dashboard/index.html`
+
+## Selección y calidad de datos
+
+### Fuentes
+
+- Portal oficial de indicadores ODS Mexico: [agenda2030.mx](https://agenda2030.mx)
+- Mapeo de metas e indicadores usados por el equipo: `Correlacionobjetivos.md`
+- Guía técnica API REST: `Guia_ODS/05_guia_servicio_RESTful.pdf`
+
+### Justificación de selección
+
+Se eligieron indicadores que capturan cinco dimensiones complementarias:
+- capital humano (educación),
+- inserción económica (informalidad),
+- capacidades productivas/tecnológicas (investigación),
+- distribución del ingreso (pobreza relativa),
+- entorno urbano (vivienda precaria).
+
+Esta combinación permite evaluar coherencia territorial entre desarrollo social, dinamismo económico e inclusión urbana.
+
+### Metadatos (obligatorio rúbrica)
+
+Ver archivo dedicado: `data/metadata_datasets.md`  
+Incluye fuente, fecha de descarga, licencia y diccionario de variables.
+
+## Cumplimiento técnico (Módulo A)
+
+- **A1 Licencia CC BY-SA:** `LICENSE`
+- **A2 README completo:** este archivo
+- **A3 Metadatos de datos:** `data/metadata_datasets.md`
+- **A4 Estructura de carpetas:** `data/`, `scripts/`, `dashboard/`
+- **A5 Declaratoria de IA:** `ai-log.md`
+
+## Estructura del repositorio
+
+```text
 ODS_Pumitas/
+├── docs/
+│   └── README.md
 ├── dashboard/
-│   ├── index.qmd          ← Tablero principal (convención HACKODS)
-│   ├── index.html         ← Salida HTML (tras quarto render)
-│   └── index_files/       ← Librerías estáticas Quarto
+│   ├── index.qmd
+│   ├── index.html
+│   └── index_files/
 ├── data/
-│   └── indicadores_ods_demo.csv   ← Datos de ejemplo (sustituir por agenda2030 / INEGI)
-├── Guia_ODS/              ← Scripts SQL, PDFs y guía del servicio REST (APIs)
-├── Correlacionobjetivos.md    ← Metas e indicadores de referencia (ODS 4, 8, 9, 10, 11)
+│   ├── indicadores_ods_demo.csv
+│   └── metadata_datasets.md
+├── scripts/
+│   ├── README.md
+│   └── fetch_api_template.py
+├── Guia_ODS/
+├── notebooks/
+│   └── README.md
+├── Correlacionobjetivos.md
+├── ai-log.md
 ├── _quarto.yml
+├── .python-version
+├── pyproject.toml
+├── main.py
 ├── requirements.txt
+├── LICENSE
 └── README.md
 ```
 
-### Guía SQL (`Guia_ODS/`)
-
-Los scripts que crean logins (`2._Script_Crear_Login_y_Usuario.sql`) y usuarios de prueba usan literales **`REEMPLAZAR_*`**. Sustitúyelos por contraseñas fuertes **solo en tu máquina o servidor**; no subas valores reales al repositorio.
-
----
-
-## Cómo ejecutar localmente
+## Reproducibilidad
 
 ```bash
 git clone https://github.com/MarxMad/HackODS-PumitasPrime.git
 cd HackODS-PumitasPrime
-
 python3 -m venv .venv
-source .venv/bin/activate          # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-
-export QUARTO_PYTHON="$(pwd)/.venv/bin/python3"   # Ajusta la ruta si usas Windows
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+export QUARTO_PYTHON="$(pwd)/.venv/bin/python3"
 quarto render
 ```
 
-El HTML se genera en **`dashboard/index.html`**.
+### Si ves `externally-managed-environment` (macOS / Homebrew)
 
----
+Ese mensaje aparece cuando `pip` intenta instalar en el Python del sistema (PEP 668), no en el venv. Con el entorno activado, instala siempre con el intérprete del venv:
 
-## Fuentes de datos
+```bash
+source .venv/bin/activate
+which python
+python -m pip install -r requirements.txt
+```
 
-- Indicadores oficiales México: [Agenda 2030 — indicadores](https://agenda2030.mx)
-- Lista detallada de metas y enlaces por indicador: ver [`Correlacionobjetivos.md`](Correlacionobjetivos.md)
+Deberías ver rutas bajo `.venv/`. Luego `quarto render` como arriba.
 
-### API REST (indicadores)
+### Uso de pandas y jupyter en este proyecto
 
-Guía en PDF para consumir el servicio RESTful de la plataforma: [`Guia_ODS/05_guia_servicio_RESTful.pdf`](Guia_ODS/05_guia_servicio_RESTful.pdf)
+- `pandas` se usa en `dashboard/index.qmd` para cargar y preparar `data/indicadores_ods_demo.csv`.
+- `jupyter` se usa como motor de ejecucion de celdas Python al renderizar Quarto.
 
----
+Comandos utiles:
 
-## Equipo
+```bash
+# verificar que pandas y jupyter quedaron instalados
+python -c "import pandas, jupyter; print('OK pandas+jupyter')"
 
-**Pumitas Prime** · HACKODS UNAM
+# abrir entorno jupyter para exploracion adicional (opcional)
+jupyter notebook
+```
 
----
+Atajo opcional para validar estructura:
 
-<div align="center">
+```bash
+python main.py
+```
 
-<sub>Paleta de badges alineada con los colores institucionales de los ODS de la ONU · 2026</sub>
+## Nota de seguridad
 
-</div>
+Los scripts SQL de guía usan marcadores `REEMPLAZAR_*` para evitar publicar contraseñas reales. Si se ejecutan en entorno local, cada equipo debe configurar credenciales propias fuera de Git.

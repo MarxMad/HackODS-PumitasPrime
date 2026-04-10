@@ -1,0 +1,76 @@
+
+HackODS
+Reglamentos 
+Calendario
+Capacitación
+Mentorías 
+Política de IA
+ 
+Secciones
+Datos del equipo
+Módulo A · Cumplimiento técnico del repositorio
+Módulo B · Selección y calidad de datos
+Módulo C · Esbozo narrativo — storytelling
+Módulo D · Prototipo Tablero
+Retroalimentación escrita al equipo
+Rúbrica de corte · HackODS UNAM 2026
+Evaluación 76 → 20 equipos
+
+Nota
+Entrega: martes 14 de abril mediante fork en GitHub, 22:00 horas
+
+Resultados: viernes 17 de abril
+
+Datos del equipo
+Campo	Valor
+Nombre del equipo	
+URL del repositorio	
+ODS elegidos	
+Evaluador/a	
+Fecha de evaluación	
+Módulo A · Cumplimiento técnico del repositorio
+Importante
+Umbral de descalificación automática. Si el equipo obtiene menos de 3 puntos en este módulo, no se evalúan los módulos B, C y D y el equipo queda fuera.
+
+#	Criterio	Descripción	Pts
+A1	Licencia CC BY-SA	Archivo LICENSE o declaración explícita en el README	0 / 1
+A2	README completo	Contiene nombre del equipo, integrantes (descripción), ODS elegido(s) y descripción breve del proyecto	0 / 1
+A3	Metadatos de los datos	Fuente, fecha de descarga, licencia y descripción de variables por dataset	0 / 1
+A4	Estructura de carpetas	Existen datos/ scripts/ dashboard/	0 / 1
+A5	Declaratoria de uso de IA	Archivo presente usando la plantilla oficial de HackODS (no texto libre)	0 / 1
+Módulo B · Selección y calidad de datos
+#	Criterio	0	1	2	3
+B1	Pertinencia — Los datos son coherentes con el ODS	Sin relación	Relación débil	Relación clara	Múltiples fuentes complementarias
+B2	Verificabilidad de la fuente — Fuentes públicas y confiables	Sin fuente	Mencionada, no verificable	Pública verificada	Oficial con URL (INEGI, ONU, datos.gob.mx)
+B3	Justificación de la selección — Explican por qué estos datos	Sin justificación	Superficial	Razonada	Pensamiento crítico evidente
+Notas módulo B:
+
+DOCUMENTAR EN EL README
+
+Módulo C · Esbozo narrativo — storytelling
+#	Criterio	0	1	2	3
+C1	Pregunta o problema central — Pregunta clara que guía el tablero	Ausente	Vaga o muy amplia	Específica y relevante	Específica, relevante y con perspectiva novedosa
+C2	Coherencia narrativa — Coherencia entre ODS, datos e historia	Sin coherencia	Parcial / confusa	Razonable	Los datos sostienen la historia
+C3	Potencial de impacto — Visibiliza un problema real en México	Sin potencial	Poco claro	Muy general	Relevancia y audiencia clara
+Notas módulo C
+
+Cada equipo debe documentar en el README su pregunta o problema central.
+
+Módulo D · Prototipo Tablero
+#	Criterio	0	1	2	3
+D0	Existencia de un .qmd o un .ipynb	No existe ninguno	Existe .ipynb	Existe .qmd	—
+D1	Avance visual — Al menos una visualización	Sin visualización	Gráfica de prueba	Una vizualización con datos reales	Dos o más visualizaciones coherentes
+D2	Estructura — Estructura o maquetado del tablero	Sin estructura	Estructura con secciones	Estructura con narrativa	Estructura con narrativa y secciones
+Advertencia
+Si D0 = 0, los criterios D1 y D2 se puntúan automáticamente como 0.
+
+Notas módulo D:
+
+Si no entregan el qmd, se pueden entregar las visualizaciones en una libreta de Jupyter. La estructura con secciones y la estructura con narrativa pueden estar contenidas en una libreta de Jupyter en el repositorio y ser especificado en el README.
+
+Retroalimentación escrita al equipo
+Nota
+La retroalimentación del corte de los 20 equipos se entregará a cada equipo solo bajo petición y al termino del HackODS.
+
+HackODS UNAM 2026
+ 
