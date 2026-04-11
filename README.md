@@ -8,9 +8,41 @@
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Licencia CC BY-SA](https://img.shields.io/badge/Licencia-CC_BY--SA_4.0-lightgrey?style=for-the-badge)](LICENSE)
 
+**[Tablero (QMD)](dashboard/index.qmd)** · **[Salida HTML](dashboard/index.html)** · **[Metadatos](data/metadata_datasets.md)** · **[Uso de IA](ai-log.md)**
+
 </div>
 
-## Datos del equipo (formato rúbrica)
+---
+
+## Historia del proyecto (storytelling)
+
+### Escena 1 — México en clave ODS, pero visto por piezas
+
+La Agenda 2030 llega a las mesas de trabajo como **metas y programas**: educación acá, empleo allá, ciencia más allá, inclusión y ciudad en otro costado. Tiene sentido operativo; el riesgo es **tratar el territorio como carpetas por secretaría** cuando los problemas **llegan en manojo**: la misma entidad puede arrastrar rezagos que se tocan entre sí.
+
+### Escena 2 — La tensión que queremos visibilizar
+
+Imagina un gabinete estatal o federal que pregunta: *“¿Dónde conviene que dejemos de tratar síntomas sueltos y empecemos a coordinar?”* No siempre hay tiempo para un paper antes de la sesión. Hace falta una **brújula rápida**: algo que diga *“mira, en estos estados estas dimensiones suelen ir juntas; vale la pena hablar en conjunto de educación, empleo, CTI, inclusión y ciudad”*.
+
+### Escena 3 — Qué hace **Pumitas Prime**
+
+Somos un **tablero vivo** (Quarto + Plotly) que cruza **cinco ODS** con datos **por entidad**: educación (4), trabajo decente (8), innovación (9), desigualdad (10) y ciudades (11). No “resuelve” el país en una pantalla: **encuadra la conversación** con gráficas que cualquier persona técnica puede leer en minutos.
+
+### Desenlace — Promesa honesta
+
+Usamos **correlación de Pearson** como lenguaje común entre secretarías. Eso **no demuestra** que un programa cause un resultado; **sí ordena** el mapa para decidir **dónde pilotar paquetes integrados** y **qué evidencia generar después** (evaluación de impacto, modelos, trabajo de campo).
+
+```mermaid
+flowchart TB
+  A[Contexto territorial<br/>32 entidades] --> B[Patrones entre ODS<br/>correlación]
+  B --> C[Diálogo de política pública<br/>priorización]
+  C --> D[Evaluación y diseño<br/>causal / impacto]
+```
+
+Las **líneas de investigación** (preguntas concretas entre pares de ODS) están desarrolladas **en el tablero** [`dashboard/index.qmd`](dashboard/index.qmd): este README prioriza la **historia y la lectura visual** para jueces y visitantes.
+
+<details>
+<summary><strong>Ficha del equipo (HackODS · clic para expandir)</strong></summary>
 
 | Campo | Valor |
 | --- | --- |
@@ -20,56 +52,38 @@
 | **Integrantes** | _Agregar nombres completos y rol breve_ |
 | **Fecha de actualización** | 2026-04-10 |
 
-## Línea del proyecto
+</details>
 
-**En una frase:** damos a las dependencias de gobierno una **foto estatal** de cómo se **combinan** educación, trabajo decente, innovación, desigualdad y ciudad, para **decidir dónde pilotar políticas integradas** y **qué secretarías conviene alinear** antes de invertir en evaluación de impacto.
+---
 
-## Pregunta que queremos resolver
+## En una sola mirada
 
-**Pregunta guía (enfoque gubernamental):**  
-_¿En qué entidades federativas los rezagos o avances en ODS 4, 8, 9, 10 y 11 **tienden a presentarse juntos**, de modo que tenga sentido diseñar **respuestas públicas coordinadas** (no solo programas aislados), y qué pares de dimensiones deberían ser prioridad en la agenda de gabinete y en la evidencia a generar?_
+| | |
+| ---: | :--- |
+| **Línea** | Foto estatal de cómo se **combinan** educación, trabajo decente, innovación, desigualdad y ciudad. |
+| **Pregunta guía** | ¿Dónde los avances o rezagos en ODS 4–11 **tienden a presentarse juntos** y por tanto conviene **coordinar** políticas y pilotos? |
+| **Hipótesis (exploratoria)** | Los rezagos **no aparecen al azar** entre estados: suelen **agruparse**; eso invita a **paquetes territoriales** sujetos a evaluación rigurosa. |
 
-**Hipótesis de política pública (exploratoria, no causal):** los indicadores de estos cinco ODS **no se distribuyen al azar** entre estados: donde aparece un rezago fuerte en una dimensión, con frecuencia **coexisten** desviaciones en otras (por ejemplo educación + informalidad + pobreza relativa, o ciudad + desigualdad). Si ese patrón se confirma en los datos oficiales, **la política pública eficiente** no debería depender solo de metas sectoriales desarticuladas, sino de **paquetes territoriales** (educación + empleo + CTI + inclusión + vivienda/urbano) sujetos luego a **evaluación rigurosa**. El tablero sirve para **ubicar esos patrones** y **justificar ex ante** dónde conviene instrumentar pilotos integrados y estudios de seguimiento.
+---
 
-> Metodología: **correlación de Pearson** a nivel estatal. **No demuestra** que un programa cause un resultado; **sí ayuda** a priorizar territorios y combinaciones de agenda para diseño y evaluación de políticas.
+## ¿Para quién es este repositorio?
 
-## Diez preguntas de investigación (ODS 4–11 y correlación)
-
-Lo que “resolvemos” aquí es **acotar y priorizar preguntas** que luego pueden llevarse a modelos, evaluaciones o políticas. El tablero permite ver si los datos **co-mueven** en el mismo sentido entre entidades.
-
-1. **ODS 4 ↔ ODS 8:** ¿Mayor finalización escolar se asocia con menor empleo informal?
-2. **ODS 4 ↔ ODS 9:** ¿Mejor desempeño educativo acompaña a mayor intensidad de investigación estatal?
-3. **ODS 4 ↔ ODS 10:** ¿La educación se asocia con menor proporción bajo el 50% de la mediana de ingreso?
-4. **ODS 4 ↔ ODS 11:** ¿El logro educativo se relaciona con menor vivienda precaria urbana?
-5. **ODS 8 ↔ ODS 10:** ¿La informalidad laboral y la pobreza relativa por ingreso tienden a alinearse territorialmente?
-6. **ODS 9 ↔ ODS 8:** ¿Innovación e informalidad muestran un patrón de complemento o de tensión entre estados?
-7. **ODS 9 ↔ ODS 11:** ¿La capacidad de innovación se asocia con mejores condiciones urbanas?
-8. **ODS 10 ↔ ODS 11:** ¿Desigualdad de ingreso y rezago urbano habitacional coevolucionan en el mapa estatal?
-9. **ODS 8 ↔ ODS 11:** ¿El empleo informal se asocia con mayor vivienda precaria urbana?
-10. **Síntesis:** ¿Qué enlaces son los más fuertes en la matriz de correlación y qué **agendas cruzadas** (educación, trabajo, CTI, inclusión, ciudad) conviene investigar o diseñar de forma integrada?
-
-La versión contextualizada está en el tablero: `dashboard/index.qmd`.
-
-## Público y para qué lo usarían
-
-| Usuario | Para qué lo utiliza |
+| Perfil | Qué obtiene al abrirlo |
 | --- | --- |
-| **Equipos de política pública** (federal, estatal, municipal) | Comparar entidades, detectar **patrones territoriales** y formular **preguntas** para programas sectoriales (educación, empleo, ciencia, inclusión, vivienda-urbano). |
-| **Investigación** (universidad, think tanks) | Plantear **hipótesis** y delimitar **variables** para trabajos cuantitativos posteriores; citar fuentes oficiales cuando el dataset pase de demo a producción. |
-| **Sociedad civil y medios** | **Comunicar** de forma accesible cómo se relacionan dimensiones del desarrollo en el mapa estatal, sin simplificar en “una sola causa”. |
-| **Estudiantes / hackathon** | Aprender a **conectar ODS con datos** y a documentar límites del análisis. |
+| **Gobierno** (planeación, gabinete, técnico) | Una **vista comparativa** entre entidades y un lenguaje común para **alinear** agendas antes de invertir en evaluación. |
+| **Investigación** | Un **punto de partida reproducible**: variables, código y metadatos para pasar de exploración a modelos serios. |
+| **Sociedad civil y medios** | Una **narrativa basada en datos** sin vender causalidad falsa. |
+| **Estudiantes / hackathon** | Un ejemplo de cómo **aterrizar ODS** en tablero y documentación. |
 
-**Audiencia principal:** tomadores de decisión y equipos técnicos que necesitan una **vista rápida, verificable y reproducible** del país en clave ODS 4–11.
+## ODS en foco (los cinco ejes)
 
-**Audiencia secundaria:** académicos y analistas que reutilicen el repositorio como **punto de partida** (código + metadatos + narrativa).
-
-## ODS en foco
-
-- **ODS 4** Educación de calidad
-- **ODS 8** Trabajo decente y crecimiento económico
-- **ODS 9** Industria, innovación e infraestructura
-- **ODS 10** Reducción de desigualdades
-- **ODS 11** Ciudades y comunidades sostenibles
+| ODS | Nombre | Rol en la historia del tablero |
+| --- | --- | --- |
+| **4** | Educación de calidad | Trayectoria escolar y capital humano |
+| **8** | Trabajo decente | Inserción laboral e informalidad |
+| **9** | Industria e innovación | Capacidades científicas y tecnológicas |
+| **10** | Reducción de desigualdades | Distribución del ingreso |
+| **11** | Ciudades sostenibles | Condición urbana y vivienda |
 
 ### Mapa visual de los ODS (identidad y lectura)
 
@@ -145,20 +159,21 @@ flowchart LR
 
 > Cada nodo es un **eje ODS** en el tablero. Las líneas punteadas indican que los **cinco indicadores** alimentan la misma **matriz de correlación** y las visualizaciones asociadas. **Correlación no implica causalidad.**
 
-## Visualizaciones del prototipo
+## Cómo se ve el tablero (tres capas visuales)
 
-- **Matriz de correlación (Pearson)** entre cinco indicadores.
-- **Dispersión** ODS 4 vs ODS 8 con tendencia lineal.
-- **Barras horizontales** de correlación contra variable base (ODS 4).
+| Capa | Qué ves | Para qué sirve en la narrativa |
+| --- | --- | --- |
+| **1 · Matriz** | Calor de correlaciones (Pearson) entre los cinco indicadores | Detectar de un vistazo **qué pares** dialogan más fuerte entre estados |
+| **2 · Dispersión** | ODS 4 frente a ODS 8 con tendencia lineal | Bajar del mapa completo a **una historia bivariada** (educación y empleo) |
+| **3 · Barras** | Correlación de cada indicador respecto a ODS 4 como base | Responder: *“si priorizamos educación, ¿qué otros ODS se mueven en la misma dirección?”* |
 
-Tablero: `dashboard/index.qmd`  
-Render: `dashboard/index.html`
+**Archivos:** [`dashboard/index.qmd`](dashboard/index.qmd) (fuente) · [`dashboard/index.html`](dashboard/index.html) (resultado de `quarto render`)
 
 ## Selección y calidad de datos
 
 ### Fuentes
 
-- Portal oficial de indicadores ODS Mexico: [agenda2030.mx](https://agenda2030.mx)
+- Portal oficial de indicadores ODS México: [agenda2030.mx](https://agenda2030.mx)
 - Mapeo de metas e indicadores usados por el equipo: `Correlacionobjetivos.md`
 - Guía técnica API REST: `Guia_ODS/05_guia_servicio_RESTful.pdf`
 
@@ -178,13 +193,18 @@ Esta combinación permite evaluar coherencia territorial entre desarrollo social
 Ver archivo dedicado: `data/metadata_datasets.md`  
 Incluye fuente, fecha de descarga, licencia y diccionario de variables.
 
-## Cumplimiento técnico (Módulo A)
+<details>
+<summary><strong>Checklist Módulo A (rúbrica HackODS)</strong></summary>
 
-- **A1 Licencia CC BY-SA:** `LICENSE`
-- **A2 README completo:** este archivo
-- **A3 Metadatos de datos:** `data/metadata_datasets.md`
-- **A4 Estructura de carpetas:** `data/`, `scripts/`, `dashboard/`
-- **A5 Declaratoria de IA:** `ai-log.md`
+| Criterio | Evidencia en el repo |
+| --- | --- |
+| **A1** Licencia CC BY-SA | [`LICENSE`](LICENSE) |
+| **A2** README completo | Este archivo |
+| **A3** Metadatos de datos | [`data/metadata_datasets.md`](data/metadata_datasets.md) |
+| **A4** Carpetas `data/`, `scripts/`, `dashboard/` | Estructura en árbol más abajo |
+| **A5** Declaratoria de IA | [`ai-log.md`](ai-log.md) |
+
+</details>
 
 ## Estructura del repositorio
 
