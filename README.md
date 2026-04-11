@@ -71,6 +71,80 @@ La versión contextualizada está en el tablero: `dashboard/index.qmd`.
 - **ODS 10** Reducción de desigualdades
 - **ODS 11** Ciudades y comunidades sostenibles
 
+### Mapa visual de los ODS (identidad y lectura)
+
+<table>
+<tr>
+<td width="20%" align="center">
+<a href="https://www.un.org/sustainabledevelopment/es/education/">
+<img src="https://img.shields.io/badge/ODS_4-Educación_de_calidad-C5192D?style=for-the-badge" alt="ODS 4" />
+</a>
+<br/><sub>Finalización escolar, equidad, infraestructura educativa</sub>
+</td>
+<td width="20%" align="center">
+<a href="https://www.un.org/sustainabledevelopment/es/economic-growth/">
+<img src="https://img.shields.io/badge/ODS_8-Trabajo_decente-A21942?style=for-the-badge" alt="ODS 8" />
+</a>
+<br/><sub>Empleo, productividad, informalidad, inclusión financiera</sub>
+</td>
+<td width="20%" align="center">
+<a href="https://www.un.org/sustainabledevelopment/es/infrastructure/">
+<img src="https://img.shields.io/badge/ODS_9-Industria_e_innovación-FD6925?style=for-the-badge" alt="ODS 9" />
+</a>
+<br/><sub>Manufactura, I+D, infraestructura, tecnología</sub>
+</td>
+<td width="20%" align="center">
+<a href="https://www.un.org/sustainabledevelopment/es/inequality/">
+<img src="https://img.shields.io/badge/ODS_10-Reducción_desigualdades-DD1367?style=for-the-badge" alt="ODS 10" />
+</a>
+<br/><sub>Ingresos, pobreza relativa, política fiscal y Gini</sub>
+</td>
+<td width="20%" align="center">
+<a href="https://www.un.org/sustainabledevelopment/es/cities/">
+<img src="https://img.shields.io/badge/ODS_11-Ciudades_sostenibles-FD9D24?style=for-the-badge" alt="ODS 11" />
+</a>
+<br/><sub>Vivienda, movilidad, residuos, aire, espacio público</sub>
+</td>
+</tr>
+</table>
+
+### Indicadores del prototipo (columnas del CSV)
+
+| Variable en `data/indicadores_ods_demo.csv` | Lectura en el tablero |
+| --- | --- |
+| `ods_4_finalizacion_prim_sec_prep` | **ODS 4** · Índice de finalización (enseñanza primaria, secundaria y preparatoria), proxy de trayectoria escolar. |
+| `ods_8_empleo_informal` | **ODS 8** · Empleo informal en el empleo no agropecuario (%). |
+| `ods_9_investigadores_millón` | **ODS 9** · Personas investigadoras por millón de habitantes. |
+| `ods_10_pobreza_50_mediana` | **ODS 10** · Población bajo el 50% de la mediana de ingreso (%). |
+| `ods_11_vivienda_precaria` | **ODS 11** · Vivienda precaria en ámbito urbano (%). |
+
+En la entrega final cada fila se sustituirá por series oficiales homologadas; ver `data/metadata_datasets.md`.
+
+### Esquema del análisis (Mermaid)
+
+```mermaid
+flowchart LR
+  subgraph foco["Enfoque del tablero"]
+    A["ODS 4<br/>Educación"]
+    B["ODS 8<br/>Trabajo decente"]
+    C["ODS 9<br/>Industria / innovación"]
+    D["ODS 10<br/>Desigualdad"]
+    E["ODS 11<br/>Ciudades"]
+  end
+  A <--> B
+  A <--> C
+  B <--> D
+  C <--> E
+  D <--> E
+  A -. indicadores por entidad .-> M[("Matriz de<br/>correlación")]
+  B -. Pearson + scatter .-> M
+  C -. Pearson + scatter .-> M
+  D -. Pearson + scatter .-> M
+  E -. Pearson + scatter .-> M
+```
+
+> Cada nodo es un **eje ODS** en el tablero. Las líneas punteadas indican que los **cinco indicadores** alimentan la misma **matriz de correlación** y las visualizaciones asociadas. **Correlación no implica causalidad.**
+
 ## Visualizaciones del prototipo
 
 - **Matriz de correlación (Pearson)** entre cinco indicadores.
