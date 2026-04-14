@@ -1,0 +1,454 @@
+---
+title: "Análisis territorial: Educación y empleo informal"
+format: html
+execute:
+  echo: false
+---
+
+# ¿Qué está pasando en México?
+
+Los indicadores de desarrollo suelen analizarse por separado. Sin embargo, en la realidad, los rezagos y avances ocurren de forma simultánea.
+
+Este análisis explora cómo educación y empleo informal se relacionan entre estados, revelando patrones que no siempre son evidentes a simple vista.
+
+```{python}
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+import numpy as np
+
+df = pd.read_csv("../data/indicadores_ods_demo.csv")
+
+df = df.rename(columns={
+    "ods_4_finalizacion_prim_sec_prep": "ods4",
+    "ods_8_empleo_informal": "ods8"
+})
+
+df["ods8"] = df["ods8"] / 100
+
+zona_dict = {
+    "Baja California": "Norte", "Baja California Sur": "Norte", "Sonora": "Norte",
+    "Chihuahua": "Norte", "Coahuila": "Norte", "Durango": "Norte",
+    "Nuevo León": "Norte", "Sinaloa": "Norte", "San Luis Potosí": "Norte",
+    "Zacatecas": "Norte", "Tamaulipas": "Norte",
+
+    "Hidalgo": "Centro", "Ciudad de México": "Centro", "México": "Centro",
+    "Jalisco": "Centro", "Puebla": "Centro", "Querétaro": "Centro",
+    "Aguascalientes": "Centro", "Colima": "Centro", "Guanajuato": "Centro",
+    "Michoacán": "Centro", "Morelos": "Centro", "Tlaxcala": "Centro", "Nayarit": "Centro",
+
+    "Quintana Roo": "Sur", "Campeche": "Sur", "Oaxaca": "Sur",
+    "Chiapas": "Sur", "Guerrero": "Sur", "Tabasco": "Sur",
+    "Veracruz": "Sur", "Yucatán": "Sur"
+}
+
+df["zona"] = df["entidad"].map(zona_dict)
+
+df["score"] = df["ods4"] - df["ods8"]
+
+df["categoria"] = pd.qcut(
+    df["score"],
+    q=4,
+    labels=[
+        "Rezago estructural",
+        "Intermedio bajo",
+        "Intermedio alto",
+        "Alto desempeño"
+    ]
+)
+```
+
+# Relación entre educación y empleo informal
+
+Cada punto representa un estado.
+
+Más que ver valores individuales, aquí buscamos identificar si existe un patrón:
+¿los estados con mayor educación también presentan menor informalidad?
+
+```{python}
+fig_scatter = px.scatter(
+    df,
+    x="ods4",
+    y="ods8",
+    color="categoria",
+    hover_data=["entidad", "zona"],
+    title="Educación vs Empleo informal"
+)
+
+fig_scatter
+```
+
+Los datos muestran una tendencia clara: los estados con mejores niveles educativos tienden a presentar menores niveles de empleo informal.
+
+Esto no implica causalidad, pero sí sugiere que ambos fenómenos podrían estar conectados y deben analizarse de forma conjunta.
+
+
+# Clasificación de estados
+
+Para profundizar en el análisis, los estados se agrupan según su desempeño relativo.
+
+Esta segmentación permite identificar no solo extremos, sino también zonas intermedias donde las dinámicas son más complejas.
+
+```{python}
+
+zonas = ["Todas"] + list(df["zona"].dropna().unique())
+categorias = ["Todas"] + list(df["categoria"].unique())
+
+color_map = {
+    "Alto desempeño": "#59BA47",
+    "Intermedio alto": "#FEB614",
+    "Intermedio bajo": "#F36E29",
+    "Rezago estructural": "#E6213C"
+}
+
+fig = go.Figure()
+
+labels = []
+
+for zona in zonas:
+    for categoria in categorias:
+
+        dff = df.copy()
+
+        if zona != "Todas":
+            dff = dff[dff["zona"] == zona]
+
+        if categoria != "Todas":
+            dff = dff[dff["categoria"] == categoria]
+
+        label = f"{zona} | {categoria}"
+        labels.append(label)
+
+        row_colors = [color_map.get(cat, "#FFFFFF") for cat in dff["categoria"]]
+
+        fig.add_trace(go.Table(
+            header=dict(
+                values=["Estado", "Zona", "ODS 4", "ODS 8", "Categoría"],
+                fill_color="#1F2A44",
+                font=dict(color="white", size=14),
+                align="center"
+            ),
+            cells=dict(
+                values=[
+                    dff["entidad"],
+                    dff["zona"],
+                    dff["ods4"].round(2),
+                    dff["ods8"].round(2),
+                    dff["categoria"]
+                ],
+                fill_color=[row_colors],
+                align="center",
+                font=dict(size=12)
+            ),
+            visible=(label == "Todas | Todas")
+        ))
+
+# BOTONES
+buttons = []
+
+for i, label in enumerate(labels):
+    visible = [False] * len(labels)
+    visible[i] = True
+
+    buttons.append(dict(
+        label=label,
+        method="update",
+        args=[{"visible": visible},
+              {"title": f"Vista: {label}"}]
+    ))
+
+fig.update_layout(
+    updatemenus=[dict(
+        buttons=buttons,
+        direction="down",
+        showactive=True,
+        x=0,
+        y=1.2
+    )],
+    title="Explora los estados según su perfil de desarrollo",
+)
+
+fig
+```
+
+<br><br>
+
+```{python}
+
+# ordenamientos
+df_desc = df.sort_values(by="score", ascending=False)
+df_asc = df.sort_values(by="score", ascending=True)
+
+color_zona = {
+    "Norte": "#D3F7EB",
+    "Centro": "#E11284",
+    "Sur": "#06ADD9"
+}
+
+def crear_tabla(dataframe):
+    row_colors = [color_zona.get(z, "#FFFFFF") for z in dataframe["zona"]]
+
+    return go.Table(
+        header=dict(
+            values=["Entidad", "Zona", "ODS 4", "ODS 8", "Score"],
+            fill_color="#1F2A44",
+            font=dict(color="white", size=14),
+            align="center"
+        ),
+        cells=dict(
+            values=[
+                dataframe["entidad"],
+                dataframe["zona"],
+                dataframe["ods4"].round(2),
+                dataframe["ods8"].round(2),
+                dataframe["score"].round(3)
+            ],
+            fill_color=[row_colors],
+            align="center"
+        )
+    )
+
+fig_zona = go.Figure()
+
+fig_zona.add_trace(crear_tabla(df_desc))  # vista inicial
+fig_zona.add_trace(crear_tabla(df_asc))
+
+# botones
+fig_zona.update_layout(
+    updatemenus=[dict(
+        buttons=[
+            dict(label="Mejor desempeño",
+                 method="update",
+                 args=[{"visible": [True, False]}]),
+
+            dict(label="Peor desempeño",
+                 method="update",
+                 args=[{"visible": [False, True]}])
+        ],
+        direction="down"
+    )],
+    title="Estados ordenados por desempeño educativo-laboral",
+    template="plotly_white"
+)
+
+fig_zona
+```
+
+<br><br>
+
+```{python}
+import plotly.graph_objects as go
+
+fig_categoria = go.Figure()
+
+categorias = [
+    "Alto desempeño",
+    "Intermedio alto",
+    "Intermedio bajo",
+    "Rezago estructural"
+]
+
+color_categoria = {
+    "Alto desempeño": "#59BA47",
+    "Intermedio alto": "#FEB614",
+    "Intermedio bajo": "#F36E29",
+    "Rezago estructural": "#E6213C"
+}
+
+labels = []
+
+for cat in categorias:
+    dff = df[df["categoria"] == cat].sort_values(by="score", ascending=False)
+
+    row_colors = [color_categoria.get(cat, "#FFFFFF")] * len(dff)
+
+    labels.append(cat)
+
+    fig_categoria.add_trace(go.Table(
+        header=dict(
+            values=["Estado", "Zona", "Score"],
+            fill_color="#1F2A44",
+            font=dict(color="white", size=14),
+            align="center"
+        ),
+        cells=dict(
+            values=[
+                dff["entidad"],
+                dff["zona"],
+                dff["score"].round(3)
+            ],
+            fill_color=[row_colors],
+            align="center",
+            font=dict(size=12)
+        ),
+        visible=(cat == categorias[0])
+    ))
+
+# botones
+buttons = []
+
+for i, cat in enumerate(labels):
+    visible = [False] * len(labels)
+    visible[i] = True
+
+    buttons.append(dict(
+        label=cat,
+        method="update",
+        args=[{"visible": visible},
+              {"title": f"Categoría: {cat}"}]
+    ))
+
+fig_categoria.update_layout(
+    updatemenus=[dict(buttons=buttons)],
+    title="Estados clasificados por categorias de desempeño",
+    template="plotly_white"
+)
+
+fig_categoria
+```
+
+<br><br>
+
+# Una mirada territorial
+
+Las diferencias entre norte, centro y sur muestran que el contexto territorial influye significativamente en los resultados.
+
+```{python}
+# Colores para las zonas
+color_zona = {
+    "Norte": "#D3F7EB",
+    "Centro": "#E11284",
+    "Sur": "#06ADD9"
+}
+
+# Crear dataframe con entidades y zonas (sin duplicados)
+df_zonas = df[["entidad", "zona"]].drop_duplicates().reset_index(drop=True)
+
+fig = px.choropleth(
+    df_zonas,
+    geojson="https://raw.githubusercontent.com/angelnmara/geojson/master/mexicoHigh.json",
+    locations="entidad",
+    featureidkey="properties.name",
+    color="zona",
+    color_discrete_map=color_zona,
+    title="Ubicación de entidades por zona geográfica",
+    labels={"zona": "Zona"}
+)
+
+fig.update_geos(
+    fitbounds="locations",
+    visible=False
+)
+
+fig.update_layout(
+    geo=dict(
+      
+        
+        showcoastlines=True
+    ),
+    title_font_size=16
+)
+
+fig
+```
+
+```{python}
+
+fig = px.choropleth(
+    df,
+    geojson="https://raw.githubusercontent.com/angelnmara/geojson/master/mexicoHigh.json",
+    locations="entidad",
+    featureidkey="properties.name",
+    color="categoria",
+    color_discrete_map={
+        "Alto desempeño": "#59BA47",
+        "Intermedio alto": "#FEB614",
+        "Intermedio bajo": "#F36E29",
+        "Rezago estructural": "#E6213C"
+    },
+    title="Desempeño educativo-laboral por estado"
+)
+
+fig.update_geos(fitbounds="locations", visible=False)
+
+fig
+```
+
+
+Esta clasificación revela que el desarrollo no es uniforme.
+
+Existen estados donde la educación no se traduce completamente en mejores condiciones laborales, así como otros donde ambos indicadores avanzan de forma alineada.
+
+# Diferencias regionales
+
+Al observar los datos por región, emergen patrones territoriales que ayudan a entender mejor cómo se distribuyen estas dinámicas en el país.
+
+```{python}
+from plotly.subplots import make_subplots
+
+orden_zonas = ["Norte", "Centro", "Sur"]
+
+fig_pie = make_subplots(
+    rows=1, cols=3,
+    specs=[[{"type": "domain"}, {"type": "domain"}, {"type": "domain"}]],
+    subplot_titles=orden_zonas
+)
+
+for i, zona in enumerate(orden_zonas):
+    dff = df[df["zona"] == zona]
+    conteo = dff["categoria"].value_counts().reindex(categorias, fill_value=0)
+
+    fig_pie.add_trace(go.Pie(
+        labels=conteo.index,
+        values=conteo.values,
+        marker=dict(colors=[color_categoria[c] for c in conteo.index]),
+        textinfo="percent+label"
+    ), 1, i+1)
+
+fig_pie.update_layout(title="Distribución por región")
+
+fig_pie
+```
+
+```{python}
+color_categoria = {
+    "Alto desempeño": "#59BA47",
+    "Intermedio alto": "#FEB614",
+    "Intermedio bajo": "#F36E29",
+    "Rezago estructural": "#E6213C"
+}
+
+zonas = df["zona"].unique()
+
+for zona in zonas:
+    dff = df[df["zona"] == zona]
+
+    conteo = dff["categoria"].value_counts().reset_index()
+    conteo.columns = ["categoria", "cantidad"]
+
+    fig = px.pie(
+        conteo,
+        names="categoria",
+        values="cantidad",
+        title=f"Distribución por categoría — {zona}",
+        color="categoria",
+        color_discrete_map=color_categoria
+    )
+
+    fig
+```
+
+Esto refuerza la idea de que las estrategias deben adaptarse a cada región, en lugar de aplicar soluciones uniformes.
+
+Finalmente, el mapa permite visualizar estas diferencias directamente sobre el territorio.
+
+Aquí es donde los datos se conectan con la realidad: cada estado refleja una combinación única de condiciones.
+
+
+# ¿Por qué importa esto?
+
+Este análisis no busca establecer relaciones causales definitivas, sino ofrecer una forma más integrada de entender el desarrollo.
+
+Al identificar patrones entre indicadores, se abre la puerta a diseñar políticas públicas más coordinadas, enfocadas en el territorio y basadas en evidencia.
+
+Porque los problemas no ocurren por separado, y las soluciones tampoco deberían hacerlo.
