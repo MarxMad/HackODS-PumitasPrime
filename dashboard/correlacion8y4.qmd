@@ -24,7 +24,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import numpy as np
 
-df = pd.read_csv("../data/indicadores_ods.csv")
+df = pd.read_csv("../data/indicadores_ods_demo.csv")
 
 df = df.rename(columns={
     "ods_4_finalizacion_prim_sec_prep": "ods4",
