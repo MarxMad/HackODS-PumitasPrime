@@ -11,7 +11,7 @@
   </p>
 
    <p class="header-meta-row">
-    <span>Equipo: Tu equipo</span>
+    <span>Equipo: Gerardo Pedrizco Vela | María Fernanda Zanabria Espejel </span>
     <span>Fecha: Abril 2026</span>
   </p>
 
@@ -251,29 +251,6 @@ fig.update_layout(
 )
 fig.show()
 ```
-
-
----
-
-## 🔍 Análisis territorial interactivo
-
-Este módulo complementa el análisis principal explorando la relación entre educación (ODS 4) y empleo informal (ODS 8) a nivel estatal.
-
-<div style="text-align: center; margin-top: 20px;">
-  <a href="correlacion8y4.html">
-    <button style="
-      padding: 12px 24px;
-      background-color: #2ECC71;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      cursor: pointer;
-    ">
-      Ver análisis interactivo
-    </button>
-  </a>
-</div>
 
 ## Barras: correlación de cada indicador con “finalización escolar”
 

@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "dashboard/index.html",
+    "href": "dashboard/index.html",
+    "title": "\nPumitas Prime - HACKODS UNAM\n",
+    "section": "",
+    "text": "Educación (4), trabajo decente (8), industria e innovación (9), desigualdad (10) y ciudades (11)\n\n\nEquipo: Gerardo Pedrizco Vela | María Fernanda Zanabria Espejel  Fecha: Abril 2026"
+  },
+  {
+    "objectID": "dashboard/index.html#línea-del-proyecto",
+    "href": "dashboard/index.html#línea-del-proyecto",
+    "title": "\nPumitas Prime - HACKODS UNAM\n",
+    "section": "Línea del proyecto",
+    "text": "Línea del proyecto\n\nEste tablero apoya una pregunta de política pública: ¿en qué estados los indicadores de educación (ODS 4), trabajo decente (ODS 8), innovación (ODS 9), desigualdad (ODS 10) y ciudad (ODS 11) suelen ir de la mano, de forma que convenga plantear respuestas coordinadas entre dependencias y pilotos territoriales en lugar de solo escalar un programa aislado?\n\n\n\n\nLa evidencia aquí es asociativa (correlación): sirve para priorizar y dialogar en gabinete; la causalidad se aborda con evaluaciones y diseños empíricos posteriores.\n\n\n\n¿Quién lo usa y para qué? Titulares y equipos técnicos de política social, economía, educación, ciencia y desarrollo urbano (diagnóstico y priorización); investigación aplicada (delimitar preguntas evaluables); y divulgación. Referencia de metas: Correlacionobjetivos.\n\n\n\n\n\n\n\n\n\nNota\n\n\n\nLos valores del archivo data/indicadores_ods_demo.csv son ilustrativos (montados para el hackathon). Para el entregable final, se sustituirán por series oficiales desde agenda2030.mx / INEGI, con el mismo formato de columnas, el avance homologado se encuentra en data/indicadores_ods.csv."
+  },
+  {
+    "objectID": "dashboard/index.html#ods-e-indicadores-lectura-visual",
+    "href": "dashboard/index.html#ods-e-indicadores-lectura-visual",
+    "title": "\nPumitas Prime - HACKODS UNAM\n",
+    "section": "ODS e indicadores (lectura visual)",
+    "text": "ODS e indicadores (lectura visual)\n\n\n\n\n   Finalización escolar, equidad, infraestructura educativa\n\n\n   Empleo, productividad, informalidad\n\n\n   I+D, manufactura, tecnología\n\n\n   Ingreso, pobreza relativa\n\n\n   Vivienda y entorno urbano\n\n\n\n\n\n\n\n\n\n\n\nColumna en el CSV\nQué mide (proxy en el prototipo)\n\n\n\n\nods_4_finalizacion_prim_sec_prep\nFinalización escolar (índice).\n\n\nods_8_empleo_informal\nEmpleo informal no agropecuario (%).\n\n\nods_9_investigadores_millón\nInvestigadores por millón de habitantes.\n\n\nods_10_pobreza_50_mediana\nPoblación bajo el 50% de la mediana de ingreso (%).\n\n\nods_11_vivienda_precaria\nVivienda precaria urbana (%).\n\n\n\n\n\n\n\n\nflowchart LR\n\n%% ----- NODOS -----\nA[\"ODS 4&lt;br/&gt;Educación\"]\nB[\"ODS 8&lt;br/&gt;Trabajo decente\"]\nC[\"ODS 9&lt;br/&gt;Industria e innovación\"]\nD[\"ODS 10&lt;br/&gt;Reducción de desigualdad\"]\nE[\"ODS 11&lt;br/&gt;Ciudades sostenibles\"]\nM[(\"Matriz de correlación\")]\n\n%% ----- RELACIONES -----\nA &lt;--&gt; B\nA &lt;--&gt; C\nB &lt;--&gt; D\nC &lt;--&gt; E\nD &lt;--&gt; E\n\nA -. Indicadores por entidad .-&gt; M\nB -. Pearson + scatter .-&gt; M\nC -. Pearson + scatter .-&gt; M\nD -. Pearson + scatter .-&gt; M\nE -. Pearson + scatter .-&gt; M\n\n%% ----- ESTILOS ODS -----\nstyle A fill:#C5192D,color:#fff,stroke:#333,stroke-width:1px\nstyle B fill:#A21942,color:#fff,stroke:#333,stroke-width:1px\nstyle C fill:#FD6925,color:#fff,stroke:#333,stroke-width:1px\nstyle D fill:#DD1367,color:#fff,stroke:#fff,stroke-width:1px\nstyle E fill:#FD9D24,color:#fff,stroke:#333,stroke-width:1px\n\n%% ----- MATRIZ -----\nstyle M fill:#f5f5f5,color:#333,stroke:#999,stroke-dasharray: 5,5\n\n\n\n\n\n\n\nNota: la correlación describe co-movimiento entre estados; no atribuye efectos a políticas concretas."
+  },
+  {
+    "objectID": "dashboard/index.html#diez-preguntas-de-investigación-correlación-entre-ods-4-8-9-10-y-11",
+    "href": "dashboard/index.html#diez-preguntas-de-investigación-correlación-entre-ods-4-8-9-10-y-11",
+    "title": "\nPumitas Prime - HACKODS UNAM\n",
+    "section": "Diez preguntas de investigación (correlación entre ODS 4, 8, 9, 10 y 11)",
+    "text": "Diez preguntas de investigación (correlación entre ODS 4, 8, 9, 10 y 11)\nEstas preguntas orientan el análisis del tablero: cada una puede contrastarse con la matriz de correlación y las gráficas (siempre como asociación, no como prueba causal).\n\nODS 4 ↔︎ ODS 8: ¿Las entidades con mayor finalización escolar tienden a exhibir menor proporción de empleo informal, o el patrón es heterogéneo?\nODS 4 ↔︎ ODS 9: ¿El logro educativo coexiste con mayor intensidad de investigación (investigadores por millón de habitantes) a nivel estatal?\nODS 4 ↔︎ ODS 10: ¿Un mejor desempeño educativo se asocia con menor proporción de población bajo el 50% de la mediana de ingreso?\nODS 4 ↔︎ ODS 11: ¿La educación se vincula con menor rezago de vivienda precaria en zonas urbanas, o aparecen desacoples territoriales?\nODS 8 ↔︎ ODS 10: ¿La informalidad laboral se asocia con mayor pobreza relativa (ingreso), sugiriendo un frente común de política social y laboral?\nODS 9 ↔︎ ODS 8: ¿Mayor capacidad de innovación acompaña a menor informalidad (complementariedad productiva) o no hay relación lineal clara?\nODS 9 ↔︎ ODS 11: ¿La innovación medida por ciencia y tecnología se relaciona con mejores condiciones urbanas, o priman otros factores?\nODS 10 ↔︎ ODS 11: ¿La desigualdad de ingreso y el rezago habitacional urbano avanzan en paralelo entre estados?\nODS 8 ↔︎ ODS 11: ¿El empleo informal se asocia con mayor proporción de vivienda precaria, abriendo preguntas sobre trabajo decente y territorio?\nSíntesis (red de cinco ODS): ¿Qué pares de indicadores muestran las asociaciones más fuertes en el mapa estatal y qué paquetes de política (educación + empleo + CTI + inclusión + ciudad) merecerían diseñarse de forma coordinada para investigación y evaluación posterior?"
+  },
+  {
+    "objectID": "dashboard/index.html#matriz-de-correlación-pearson",
+    "href": "dashboard/index.html#matriz-de-correlación-pearson",
+    "title": "\nPumitas Prime - HACKODS UNAM\n",
+    "section": "Matriz de correlación (Pearson)",
+    "text": "Matriz de correlación (Pearson)\nLos coeficientes van de -1 a 1. Valores absolutos altos sugieren que dos indicadores suben o bajan juntos en las entidades; un signo negativo indica relación inversa. La correlación no implica causalidad.\n\n\n\n\n                            \n                                            \n\n\nFigura 1: Correlaciones de Pearson entre cinco indicadores (32 entidades, datos demo)."
+  },
+  {
+    "objectID": "dashboard/index.html#dispersión-educación-vs-trabajo-informal",
+    "href": "dashboard/index.html#dispersión-educación-vs-trabajo-informal",
+    "title": "\nPumitas Prime - HACKODS UNAM\n",
+    "section": "Dispersión: educación vs trabajo informal",
+    "text": "Dispersión: educación vs trabajo informal\nUn ejemplo de narrativa para el jurado: a mayor finalización escolar, suele observarse menor empleo informal (en datos reales conviene validar por año y controles).\n\n\n\n\n                            \n                                            \n\n\nFigura 2: Cada punto es una entidad federativa (datos demo). Recta: ajuste lineal mínimos cuadrados (numpy)."
+  },
+  {
+    "objectID": "dashboard/index.html#barras-correlación-de-cada-indicador-con-finalización-escolar",
+    "href": "dashboard/index.html#barras-correlación-de-cada-indicador-con-finalización-escolar",
+    "title": "\nPumitas Prime - HACKODS UNAM\n",
+    "section": "Barras: correlación de cada indicador con “finalización escolar”",
+    "text": "Barras: correlación de cada indicador con “finalización escolar”\n\n\n\n\n                            \n                                            \n\n\nFigura 3"
+  },
+  {
+    "objectID": "dashboard/index.html#cómo-conectar-con-tus-fuentes-reales",
+    "href": "dashboard/index.html#cómo-conectar-con-tus-fuentes-reales",
+    "title": "\nPumitas Prime - HACKODS UNAM\n",
+    "section": "Cómo conectar con tus fuentes reales",
+    "text": "Cómo conectar con tus fuentes reales\n\nDescarga series por entidad desde los enlaces de Correlacionobjetivos.md (por ejemplo 4.1.2, 8.3.1, 9.5.2, 10.2.1, 11.1.1).\nUnifica mismo año (o promedio móvil) y misma cobertura geográfica.\nReemplaza data/indicadores_ods_demo.csv manteniendo columnas numéricas + entidad; vuelve a renderizar con quarto render dashboard/index.qmd (o quarto render desde la raíz del proyecto).\n\nLa carpeta Guia_ODS con scripts SQL sirve si tu equipo centraliza indicadores en una base propia; el flujo de Quarto solo necesita el CSV (o lectura SQL vía pandas.read_sql si más adelante conectas la BD)."
+  },
+  {
+    "objectID": "dashboard/correlacion8y4.html",
+    "href": "dashboard/correlacion8y4.html",
+    "title": "\nAnálisis territorial: Educación y empleo informal\n",
+    "section": "",
+    "text": "Correlaciones entre ODS\n\n\nEducación (4) y Trabajo decente (8)\n\n\n\n¿Qué está pasando en México?\nLos indicadores de desarrollo suelen analizarse por separado. Sin embargo, en la realidad, los rezagos y avances ocurren de forma simultánea.\nEste análisis explora cómo educación y empleo informal se relacionan entre estados, revelando patrones que no siempre son evidentes a simple vista.\n\n\nRelación entre educación y empleo informal\nCada punto representa un estado.\nMás que ver valores individuales, aquí buscamos identificar si existe un patrón: ¿los estados con mayor educación también presentan menor informalidad?\n\n\n                            \n                                            \n\n\nLos datos muestran una tendencia clara: los estados con mejores niveles educativos tienden a presentar menores niveles de empleo informal.\nEsto no implica causalidad, pero sí sugiere que ambos fenómenos podrían estar conectados y deben analizarse de forma conjunta.\n\n\nClasificación de estados\nPara profundizar en el análisis, los estados se agrupan según su desempeño relativo.\nEsta segmentación permite identificar no solo extremos, sino también zonas intermedias donde las dinámicas son más complejas.\n\n\n                            \n                                            \n\n\n\n\n\n                            \n                                            \n\n\n\n\n\n                            \n                                            \n\n\n\n\n\nUna mirada territorial\nLas diferencias entre norte, centro y sur muestran que el contexto territorial influye significativamente en los resultados.\n\n\n                            \n                                            \n\n\n\n\n                            \n                                            \n\n\nEsta clasificación revela que el desarrollo no es uniforme.\nExisten estados donde la educación no se traduce completamente en mejores condiciones laborales, así como otros donde ambos indicadores avanzan de forma alineada.\n\n\nDiferencias regionales\nAl observar los datos por región, emergen patrones territoriales que ayudan a entender mejor cómo se distribuyen estas dinámicas en el país.\n\n\n                            \n                                            \n\n\nEsto refuerza la idea de que las estrategias deben adaptarse a cada región, en lugar de aplicar soluciones uniformes.\nFinalmente, el mapa permite visualizar estas diferencias directamente sobre el territorio.\nAquí es donde los datos se conectan con la realidad: cada estado refleja una combinación única de condiciones.\n\n\n¿Por qué importa esto?\nEste análisis no busca establecer relaciones causales definitivas, sino ofrecer una forma más integrada de entender el desarrollo.\nAl identificar patrones entre indicadores, se abre la puerta a diseñar políticas públicas más coordinadas, enfocadas en el territorio y basadas en evidencia.\nPorque los problemas no ocurren por separado, y las soluciones tampoco deberían hacerlo."
+  }
+]

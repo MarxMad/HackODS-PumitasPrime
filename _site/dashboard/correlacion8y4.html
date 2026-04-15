@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>correlacion8y4 – HackODS · Pumitas Prime</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6b423f165eeea3787de40cb4f8e821c3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script>
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+</script>
+<script type="module">import "https://cdn.plot.ly/plotly-3.5.0.min"</script>
+
+
+
+<link rel="stylesheet" href="../dashboard/styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">HackODS · Pumitas Prime</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../dashboard/index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../dashboard/correlacion8y4.html" aria-current="page"> 
+<span class="menu-text">Análisis ODS 4 vs ODS 8</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content column-page" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7">
+Análisis territorial: Educación y empleo informal
+</h1></header>
+
+
+
+
+<div class="header">
+
+<h2 class="anchored">
+Correlaciones entre ODS
+</h2>
+<p>
+Educación (4) y Trabajo decente (8)
+</p>
+</div>
+<section id="qué-está-pasando-en-méxico" class="level1">
+<h1>¿Qué está pasando en México?</h1>
+<p>Los indicadores de desarrollo suelen analizarse por separado. Sin embargo, en la realidad, los rezagos y avances ocurren de forma simultánea.</p>
+<p>Este análisis explora cómo educación y empleo informal se relacionan entre estados, revelando patrones que no siempre son evidentes a simple vista.</p>
+</section>
+<section id="relación-entre-educación-y-empleo-informal" class="level1">
+<h1>Relación entre educación y empleo informal</h1>
+<p>Cada punto representa un estado.</p>
+<p>Más que ver valores individuales, aquí buscamos identificar si existe un patrón: ¿los estados con mayor educación también presentan menor informalidad?</p>
+<div id="c70653d6" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script>if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.5.0.min.js" integrity="sha256-fHbNLP+GlIXN+efbQec78UkemUz3NJp7UmfGxC1tNxs=" crossorigin="anonymous"></script>                <div id="fefd4d7f-8560-4301-9d61-f87e7cd39b3c" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("fefd4d7f-8560-4301-9d61-f87e7cd39b3c")) {                    Plotly.newPlot(                        "fefd4d7f-8560-4301-9d61-f87e7cd39b3c",                        [{"customdata":[["Aguascalientes","Centro"],["Baja California","Norte"],["Baja California Sur","Norte"],["Coahuila","Norte"],["Colima","Centro"],["Ciudad de M\u00e9xico","Centro"],["Nuevo Le\u00f3n","Norte"],["Quer\u00e9taro","Centro"]],"hovertemplate":"categoria=Alto desempe\u00f1o\u003cbr\u003eods4=%{x}\u003cbr\u003eods8=%{y}\u003cbr\u003eentidad=%{customdata[0]}\u003cbr\u003ezona=%{customdata[1]}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Alto desempe\u00f1o","marker":{"color":"#636efa","symbol":"circle"},"mode":"markers","name":"Alto desempe\u00f1o","orientation":"v","showlegend":true,"x":{"dtype":"f8","bdata":"cT0K16Nw7T8pXI\u002fC9SjsPx+F61G4Hu0\u002fzczMzMzM7D97FK5H4XrsP8P1KFyPwu0\u002fH4XrUbge7T\u002fNzMzMzMzsPw=="},"xaxis":"x","y":{"dtype":"f8","bdata":"jGzn+6nx2j+mm8QgsHLYPw0CK4cW2dY\u002fWmQ730+N1z+gGi\u002fdJAbZP3Noke18P9U\u002fJzEIrBxa1D8OLbKd76fWPw=="},"yaxis":"y","type":"scatter"},{"customdata":[["Campeche","Sur"],["Guanajuato","Centro"],["Hidalgo","Centro"],["Nayarit","Centro"],["San Luis Potos\u00ed","Norte"],["Sinaloa","Norte"],["Tlaxcala","Centro"],["Yucat\u00e1n","Sur"]],"hovertemplate":"categoria=Intermedio bajo\u003cbr\u003eods4=%{x}\u003cbr\u003eods8=%{y}\u003cbr\u003eentidad=%{customdata[0]}\u003cbr\u003ezona=%{customdata[1]}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Intermedio bajo","marker":{"color":"#EF553B","symbol":"circle"},"mode":"markers","name":"Intermedio bajo","orientation":"v","showlegend":true,"x":{"dtype":"f8","bdata":"MzMzMzMz6z\u002fhehSuR+HqP4\u002fC9Shcj+o\u002fPQrXo3A96j8zMzMzMzPrP+F6FK5H4eo\u002f4XoUrkfh6j+PwvUoXI\u002fqPw=="},"xaxis":"x","y":{"dtype":"f8","bdata":"tvP91Hjp3j\u002fJdr6fGi\u002fdP2Q730+Nl94\u002fGARWDi2y3T\u002fUeOkmMQjcP30\u002fNV66Sdw\u002fGy\u002fdJAaB3T946SYxCKzcPw=="},"yaxis":"y","type":"scatter"},{"customdata":[["Chiapas","Sur"],["Guerrero","Sur"],["Michoac\u00e1n","Centro"],["Oaxaca","Sur"],["Puebla","Centro"],["Tabasco","Sur"],["Veracruz","Sur"],["Zacatecas","Norte"]],"hovertemplate":"categoria=Rezago estructural\u003cbr\u003eods4=%{x}\u003cbr\u003eods8=%{y}\u003cbr\u003eentidad=%{customdata[0]}\u003cbr\u003ezona=%{customdata[1]}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Rezago estructural","marker":{"color":"#00cc96","symbol":"circle"},"mode":"markers","name":"Rezago estructural","orientation":"v","showlegend":true,"x":{"dtype":"f8","bdata":"CtejcD0K5z\u002f2KFyPwvXoP5qZmZmZmek\u002frkfhehSu5z89CtejcD3qP+xRuB6F6+k\u002fSOF6FK5H6T\u002fsUbgehevpPw=="},"xaxis":"x","y":{"dtype":"f8","bdata":"46WbxCCw4j956SYxCKzgP7FyaJHtfN8\u002fQWDl0CLb4T+yne+nxkvfP\u002f7UeOkmMeA\u002f0SLb+X5q4D9pke18PzXePw=="},"yaxis":"y","type":"scatter"},{"customdata":[["Chihuahua","Norte"],["Durango","Norte"],["Jalisco","Centro"],["M\u00e9xico","Centro"],["Morelos","Centro"],["Quintana Roo","Sur"],["Sonora","Norte"],["Tamaulipas","Norte"]],"hovertemplate":"categoria=Intermedio alto\u003cbr\u003eods4=%{x}\u003cbr\u003eods8=%{y}\u003cbr\u003eentidad=%{customdata[0]}\u003cbr\u003ezona=%{customdata[1]}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Intermedio alto","marker":{"color":"#ab63fa","symbol":"circle"},"mode":"markers","name":"Intermedio alto","orientation":"v","showlegend":true,"x":{"dtype":"f8","bdata":"16NwPQrX6z+F61G4HoXrPylcj8L1KOw\u002fhetRuB6F6z\u002fXo3A9CtfrP4XrUbgehes\u002fKVyPwvUo7D8zMzMzMzPrPw=="},"xaxis":"x","y":{"dtype":"f8","bdata":"AAAAAAAA2D89CtejcD3aP5duEoPAytk\u002fexSuR+F63D8v3SQGgZXbP+Slm8QgsNo\u002fSOF6FK5H2T\u002ffT42XbhLbPw=="},"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"ods4"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"ods8"}},"legend":{"title":{"text":"categoria"},"tracegroupgap":0},"title":{"text":"Educaci\u00f3n vs Empleo informal"}},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('fefd4d7f-8560-4301-9d61-f87e7cd39b3c');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };            </script>        </div>
+</div>
+</div>
+<p>Los datos muestran una tendencia clara: los estados con mejores niveles educativos tienden a presentar menores niveles de empleo informal.</p>
+<p>Esto no implica causalidad, pero sí sugiere que ambos fenómenos podrían estar conectados y deben analizarse de forma conjunta.</p>
+</section>
+<section id="clasificación-de-estados" class="level1">
+<h1>Clasificación de estados</h1>
+<p>Para profundizar en el análisis, los estados se agrupan según su desempeño relativo.</p>
+<p>Esta segmentación permite identificar no solo extremos, sino también zonas intermedias donde las dinámicas son más complejas.</p>
+<div id="9cd76f5a" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script>if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.5.0.min.js" integrity="sha256-fHbNLP+GlIXN+efbQec78UkemUz3NJp7UmfGxC1tNxs=" crossorigin="anonymous"></script>                <div id="e418e5bb-fd5b-4600-a261-ce5ae1e7cff4" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("e418e5bb-fd5b-4600-a261-ce5ae1e7cff4")) {                    Plotly.newPlot(                        "e418e5bb-fd5b-4600-a261-ce5ae1e7cff4",                        [{"cells":{"align":"center","fill":{"color":[["#59BA47","#59BA47","#59BA47","#F36E29","#59BA47","#59BA47","#E6213C","#FEB614","#59BA47","#FEB614","#F36E29","#E6213C","#F36E29","#FEB614","#FEB614","#E6213C","#FEB614","#F36E29","#59BA47","#E6213C","#E6213C","#59BA47","#FEB614","#F36E29","#F36E29","#FEB614","#E6213C","#FEB614","#F36E29","#E6213C","#F36E29","#E6213C"]]},"font":{"size":12},"values":[["Aguascalientes","Baja California","Baja California Sur","Campeche","Coahuila","Colima","Chiapas","Chihuahua","Ciudad de M\u00e9xico","Durango","Guanajuato","Guerrero","Hidalgo","Jalisco","M\u00e9xico","Michoac\u00e1n","Morelos","Nayarit","Nuevo Le\u00f3n","Oaxaca","Puebla","Quer\u00e9taro","Quintana Roo","San Luis Potos\u00ed","Sinaloa","Sonora","Tabasco","Tamaulipas","Tlaxcala","Veracruz","Yucat\u00e1n","Zacatecas"],["Centro","Norte","Norte","Sur","Norte","Centro","Sur","Norte","Centro","Norte","Centro","Sur","Centro","Centro","Centro","Centro","Centro","Centro","Norte","Sur","Centro","Centro","Sur","Norte","Norte","Norte","Sur","Norte","Centro","Sur","Sur","Norte"],[0.92,0.88,0.91,0.85,0.9,0.89,0.72,0.87,0.93,0.86,0.84,0.78,0.83,0.88,0.86,0.8,0.87,0.82,0.91,0.74,0.82,0.9,0.86,0.85,0.84,0.88,0.81,0.85,0.84,0.79,0.83,0.81],[0.42,0.38,0.36,0.48,0.37,0.39,0.58,0.38,0.33,0.41,0.46,0.52,0.48,0.4,0.44,0.49,0.43,0.46,0.32,0.56,0.49,0.35,0.42,0.44,0.44,0.4,0.51,0.42,0.46,0.51,0.45,0.47],["Alto desempe\u00f1o","Alto desempe\u00f1o","Alto desempe\u00f1o","Intermedio bajo","Alto desempe\u00f1o","Alto desempe\u00f1o","Rezago estructural","Intermedio alto","Alto desempe\u00f1o","Intermedio alto","Intermedio bajo","Rezago estructural","Intermedio bajo","Intermedio alto","Intermedio alto","Rezago estructural","Intermedio alto","Intermedio bajo","Alto desempe\u00f1o","Rezago estructural","Rezago estructural","Alto desempe\u00f1o","Intermedio alto","Intermedio bajo","Intermedio bajo","Intermedio alto","Rezago estructural","Intermedio alto","Intermedio bajo","Rezago estructural","Intermedio bajo","Rezago estructural"]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","ODS 4","ODS 8","Categor\u00eda"]},"visible":true,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#59BA47","#59BA47","#59BA47","#59BA47","#59BA47","#59BA47","#59BA47","#59BA47"]]},"font":{"size":12},"values":[["Aguascalientes","Baja California","Baja California Sur","Coahuila","Colima","Ciudad de M\u00e9xico","Nuevo Le\u00f3n","Quer\u00e9taro"],["Centro","Norte","Norte","Norte","Centro","Centro","Norte","Centro"],[0.92,0.88,0.91,0.9,0.89,0.93,0.91,0.9],[0.42,0.38,0.36,0.37,0.39,0.33,0.32,0.35],["Alto desempe\u00f1o","Alto desempe\u00f1o","Alto desempe\u00f1o","Alto desempe\u00f1o","Alto desempe\u00f1o","Alto desempe\u00f1o","Alto desempe\u00f1o","Alto desempe\u00f1o"]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","ODS 4","ODS 8","Categor\u00eda"]},"visible":false,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#F36E29","#F36E29","#F36E29","#F36E29","#F36E29","#F36E29","#F36E29","#F36E29"]]},"font":{"size":12},"values":[["Campeche","Guanajuato","Hidalgo","Nayarit","San Luis Potos\u00ed","Sinaloa","Tlaxcala","Yucat\u00e1n"],["Sur","Centro","Centro","Centro","Norte","Norte","Centro","Sur"],[0.85,0.84,0.83,0.82,0.85,0.84,0.84,0.83],[0.48,0.46,0.48,0.46,0.44,0.44,0.46,0.45],["Intermedio bajo","Intermedio bajo","Intermedio bajo","Intermedio bajo","Intermedio bajo","Intermedio bajo","Intermedio bajo","Intermedio bajo"]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","ODS 4","ODS 8","Categor\u00eda"]},"visible":false,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#E6213C","#E6213C","#E6213C","#E6213C","#E6213C","#E6213C","#E6213C","#E6213C"]]},"font":{"size":12},"values":[["Chiapas","Guerrero","Michoac\u00e1n","Oaxaca","Puebla","Tabasco","Veracruz","Zacatecas"],["Sur","Sur","Centro","Sur","Centro","Sur","Sur","Norte"],[0.72,0.78,0.8,0.74,0.82,0.81,0.79,0.81],[0.58,0.52,0.49,0.56,0.49,0.51,0.51,0.47],["Rezago estructural","Rezago estructural","Rezago estructural","Rezago estructural","Rezago estructural","Rezago estructural","Rezago estructural","Rezago estructural"]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","ODS 4","ODS 8","Categor\u00eda"]},"visible":false,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#FEB614","#FEB614","#FEB614","#FEB614","#FEB614","#FEB614","#FEB614","#FEB614"]]},"font":{"size":12},"values":[["Chihuahua","Durango","Jalisco","M\u00e9xico","Morelos","Quintana Roo","Sonora","Tamaulipas"],["Norte","Norte","Centro","Centro","Centro","Sur","Norte","Norte"],[0.87,0.86,0.88,0.86,0.87,0.86,0.88,0.85],[0.38,0.41,0.4,0.44,0.43,0.42,0.4,0.42],["Intermedio alto","Intermedio alto","Intermedio alto","Intermedio alto","Intermedio alto","Intermedio alto","Intermedio alto","Intermedio alto"]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","ODS 4","ODS 8","Categor\u00eda"]},"visible":false,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#59BA47","#59BA47","#59BA47","#F36E29","#F36E29","#FEB614","#FEB614","#E6213C","#FEB614","#F36E29","#E6213C","#59BA47","#F36E29"]]},"font":{"size":12},"values":[["Aguascalientes","Colima","Ciudad de M\u00e9xico","Guanajuato","Hidalgo","Jalisco","M\u00e9xico","Michoac\u00e1n","Morelos","Nayarit","Puebla","Quer\u00e9taro","Tlaxcala"],["Centro","Centro","Centro","Centro","Centro","Centro","Centro","Centro","Centro","Centro","Centro","Centro","Centro"],[0.92,0.89,0.93,0.84,0.83,0.88,0.86,0.8,0.87,0.82,0.82,0.9,0.84],[0.42,0.39,0.33,0.46,0.48,0.4,0.44,0.49,0.43,0.46,0.49,0.35,0.46],["Alto desempe\u00f1o","Alto desempe\u00f1o","Alto desempe\u00f1o","Intermedio bajo","Intermedio bajo","Intermedio alto","Intermedio alto","Rezago estructural","Intermedio alto","Intermedio bajo","Rezago estructural","Alto desempe\u00f1o","Intermedio bajo"]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","ODS 4","ODS 8","Categor\u00eda"]},"visible":false,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#59BA47","#59BA47","#59BA47","#59BA47"]]},"font":{"size":12},"values":[["Aguascalientes","Colima","Ciudad de M\u00e9xico","Quer\u00e9taro"],["Centro","Centro","Centro","Centro"],[0.92,0.89,0.93,0.9],[0.42,0.39,0.33,0.35],["Alto desempe\u00f1o","Alto desempe\u00f1o","Alto desempe\u00f1o","Alto desempe\u00f1o"]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","ODS 4","ODS 8","Categor\u00eda"]},"visible":false,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#F36E29","#F36E29","#F36E29","#F36E29"]]},"font":{"size":12},"values":[["Guanajuato","Hidalgo","Nayarit","Tlaxcala"],["Centro","Centro","Centro","Centro"],[0.84,0.83,0.82,0.84],[0.46,0.48,0.46,0.46],["Intermedio bajo","Intermedio bajo","Intermedio bajo","Intermedio bajo"]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","ODS 4","ODS 8","Categor\u00eda"]},"visible":false,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#E6213C","#E6213C"]]},"font":{"size":12},"values":[["Michoac\u00e1n","Puebla"],["Centro","Centro"],[0.8,0.82],[0.49,0.49],["Rezago estructural","Rezago estructural"]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","ODS 4","ODS 8","Categor\u00eda"]},"visible":false,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#FEB614","#FEB614","#FEB614"]]},"font":{"size":12},"values":[["Jalisco","M\u00e9xico","Morelos"],["Centro","Centro","Centro"],[0.88,0.86,0.87],[0.4,0.44,0.43],["Intermedio alto","Intermedio alto","Intermedio alto"]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","ODS 4","ODS 8","Categor\u00eda"]},"visible":false,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#59BA47","#59BA47","#59BA47","#FEB614","#FEB614","#59BA47","#F36E29","#F36E29","#FEB614","#FEB614","#E6213C"]]},"font":{"size":12},"values":[["Baja California","Baja California Sur","Coahuila","Chihuahua","Durango","Nuevo Le\u00f3n","San Luis Potos\u00ed","Sinaloa","Sonora","Tamaulipas","Zacatecas"],["Norte","Norte","Norte","Norte","Norte","Norte","Norte","Norte","Norte","Norte","Norte"],[0.88,0.91,0.9,0.87,0.86,0.91,0.85,0.84,0.88,0.85,0.81],[0.38,0.36,0.37,0.38,0.41,0.32,0.44,0.44,0.4,0.42,0.47],["Alto desempe\u00f1o","Alto desempe\u00f1o","Alto desempe\u00f1o","Intermedio alto","Intermedio alto","Alto desempe\u00f1o","Intermedio bajo","Intermedio bajo","Intermedio alto","Intermedio alto","Rezago estructural"]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","ODS 4","ODS 8","Categor\u00eda"]},"visible":false,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#59BA47","#59BA47","#59BA47","#59BA47"]]},"font":{"size":12},"values":[["Baja California","Baja California Sur","Coahuila","Nuevo Le\u00f3n"],["Norte","Norte","Norte","Norte"],[0.88,0.91,0.9,0.91],[0.38,0.36,0.37,0.32],["Alto desempe\u00f1o","Alto desempe\u00f1o","Alto desempe\u00f1o","Alto desempe\u00f1o"]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","ODS 4","ODS 8","Categor\u00eda"]},"visible":false,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#F36E29","#F36E29"]]},"font":{"size":12},"values":[["San Luis Potos\u00ed","Sinaloa"],["Norte","Norte"],[0.85,0.84],[0.44,0.44],["Intermedio bajo","Intermedio bajo"]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","ODS 4","ODS 8","Categor\u00eda"]},"visible":false,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#E6213C"]]},"font":{"size":12},"values":[["Zacatecas"],["Norte"],[0.81],[0.47],["Rezago estructural"]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","ODS 4","ODS 8","Categor\u00eda"]},"visible":false,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#FEB614","#FEB614","#FEB614","#FEB614"]]},"font":{"size":12},"values":[["Chihuahua","Durango","Sonora","Tamaulipas"],["Norte","Norte","Norte","Norte"],[0.87,0.86,0.88,0.85],[0.38,0.41,0.4,0.42],["Intermedio alto","Intermedio alto","Intermedio alto","Intermedio alto"]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","ODS 4","ODS 8","Categor\u00eda"]},"visible":false,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#F36E29","#E6213C","#E6213C","#E6213C","#FEB614","#E6213C","#E6213C","#F36E29"]]},"font":{"size":12},"values":[["Campeche","Chiapas","Guerrero","Oaxaca","Quintana Roo","Tabasco","Veracruz","Yucat\u00e1n"],["Sur","Sur","Sur","Sur","Sur","Sur","Sur","Sur"],[0.85,0.72,0.78,0.74,0.86,0.81,0.79,0.83],[0.48,0.58,0.52,0.56,0.42,0.51,0.51,0.45],["Intermedio bajo","Rezago estructural","Rezago estructural","Rezago estructural","Intermedio alto","Rezago estructural","Rezago estructural","Intermedio bajo"]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","ODS 4","ODS 8","Categor\u00eda"]},"visible":false,"type":"table"},{"cells":{"align":"center","fill":{"color":[[]]},"font":{"size":12},"values":[[],[],[],[],[]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","ODS 4","ODS 8","Categor\u00eda"]},"visible":false,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#F36E29","#F36E29"]]},"font":{"size":12},"values":[["Campeche","Yucat\u00e1n"],["Sur","Sur"],[0.85,0.83],[0.48,0.45],["Intermedio bajo","Intermedio bajo"]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","ODS 4","ODS 8","Categor\u00eda"]},"visible":false,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#E6213C","#E6213C","#E6213C","#E6213C","#E6213C"]]},"font":{"size":12},"values":[["Chiapas","Guerrero","Oaxaca","Tabasco","Veracruz"],["Sur","Sur","Sur","Sur","Sur"],[0.72,0.78,0.74,0.81,0.79],[0.58,0.52,0.56,0.51,0.51],["Rezago estructural","Rezago estructural","Rezago estructural","Rezago estructural","Rezago estructural"]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","ODS 4","ODS 8","Categor\u00eda"]},"visible":false,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#FEB614"]]},"font":{"size":12},"values":[["Quintana Roo"],["Sur"],[0.86],[0.42],["Intermedio alto"]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","ODS 4","ODS 8","Categor\u00eda"]},"visible":false,"type":"table"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"updatemenus":[{"buttons":[{"args":[{"visible":[true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]},{"title":"Vista: Todas | Todas"}],"label":"Todas | Todas","method":"update"},{"args":[{"visible":[false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]},{"title":"Vista: Todas | Alto desempe\u00f1o"}],"label":"Todas | Alto desempe\u00f1o","method":"update"},{"args":[{"visible":[false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]},{"title":"Vista: Todas | Intermedio bajo"}],"label":"Todas | Intermedio bajo","method":"update"},{"args":[{"visible":[false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]},{"title":"Vista: Todas | Rezago estructural"}],"label":"Todas | Rezago estructural","method":"update"},{"args":[{"visible":[false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]},{"title":"Vista: Todas | Intermedio alto"}],"label":"Todas | Intermedio alto","method":"update"},{"args":[{"visible":[false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false]},{"title":"Vista: Centro | Todas"}],"label":"Centro | Todas","method":"update"},{"args":[{"visible":[false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false]},{"title":"Vista: Centro | Alto desempe\u00f1o"}],"label":"Centro | Alto desempe\u00f1o","method":"update"},{"args":[{"visible":[false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false]},{"title":"Vista: Centro | Intermedio bajo"}],"label":"Centro | Intermedio bajo","method":"update"},{"args":[{"visible":[false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false]},{"title":"Vista: Centro | Rezago estructural"}],"label":"Centro | Rezago estructural","method":"update"},{"args":[{"visible":[false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false]},{"title":"Vista: Centro | Intermedio alto"}],"label":"Centro | Intermedio alto","method":"update"},{"args":[{"visible":[false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false]},{"title":"Vista: Norte | Todas"}],"label":"Norte | Todas","method":"update"},{"args":[{"visible":[false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false]},{"title":"Vista: Norte | Alto desempe\u00f1o"}],"label":"Norte | Alto desempe\u00f1o","method":"update"},{"args":[{"visible":[false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false]},{"title":"Vista: Norte | Intermedio bajo"}],"label":"Norte | Intermedio bajo","method":"update"},{"args":[{"visible":[false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false]},{"title":"Vista: Norte | Rezago estructural"}],"label":"Norte | Rezago estructural","method":"update"},{"args":[{"visible":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false]},{"title":"Vista: Norte | Intermedio alto"}],"label":"Norte | Intermedio alto","method":"update"},{"args":[{"visible":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false]},{"title":"Vista: Sur | Todas"}],"label":"Sur | Todas","method":"update"},{"args":[{"visible":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false]},{"title":"Vista: Sur | Alto desempe\u00f1o"}],"label":"Sur | Alto desempe\u00f1o","method":"update"},{"args":[{"visible":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false]},{"title":"Vista: Sur | Intermedio bajo"}],"label":"Sur | Intermedio bajo","method":"update"},{"args":[{"visible":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false]},{"title":"Vista: Sur | Rezago estructural"}],"label":"Sur | Rezago estructural","method":"update"},{"args":[{"visible":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true]},{"title":"Vista: Sur | Intermedio alto"}],"label":"Sur | Intermedio alto","method":"update"}],"direction":"down","showactive":true,"x":0,"y":1.2}],"title":{"text":"Explora los estados seg\u00fan su perfil de desarrollo"}},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('e418e5bb-fd5b-4600-a261-ce5ae1e7cff4');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };            </script>        </div>
+</div>
+</div>
+<p><br><br></p>
+<div id="78922790" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script>if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.5.0.min.js" integrity="sha256-fHbNLP+GlIXN+efbQec78UkemUz3NJp7UmfGxC1tNxs=" crossorigin="anonymous"></script>                <div id="25148065-74c0-4f4c-838e-f54787ee5700" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("25148065-74c0-4f4c-838e-f54787ee5700")) {                    Plotly.newPlot(                        "25148065-74c0-4f4c-838e-f54787ee5700",                        [{"cells":{"align":"center","fill":{"color":[["#E11284","#D3F7EB","#D3F7EB","#E11284","#D3F7EB","#E11284","#E11284","#D3F7EB","#D3F7EB","#D3F7EB","#E11284","#D3F7EB","#06ADD9","#E11284","#D3F7EB","#E11284","#D3F7EB","#D3F7EB","#E11284","#06ADD9","#E11284","#06ADD9","#E11284","#E11284","#D3F7EB","#E11284","#E11284","#06ADD9","#06ADD9","#06ADD9","#06ADD9","#06ADD9"]]},"values":[["Ciudad de M\u00e9xico","Nuevo Le\u00f3n","Baja California Sur","Quer\u00e9taro","Coahuila","Colima","Aguascalientes","Baja California","Chihuahua","Sonora","Jalisco","Durango","Quintana Roo","Morelos","Tamaulipas","M\u00e9xico","San Luis Potos\u00ed","Sinaloa","Guanajuato","Yucat\u00e1n","Tlaxcala","Campeche","Nayarit","Hidalgo","Zacatecas","Puebla","Michoac\u00e1n","Tabasco","Veracruz","Guerrero","Oaxaca","Chiapas"],["Centro","Norte","Norte","Centro","Norte","Centro","Centro","Norte","Norte","Norte","Centro","Norte","Sur","Centro","Norte","Centro","Norte","Norte","Centro","Sur","Centro","Sur","Centro","Centro","Norte","Centro","Centro","Sur","Sur","Sur","Sur","Sur"],[0.93,0.91,0.91,0.9,0.9,0.89,0.92,0.88,0.87,0.88,0.88,0.86,0.86,0.87,0.85,0.86,0.85,0.84,0.84,0.83,0.84,0.85,0.82,0.83,0.81,0.82,0.8,0.81,0.79,0.78,0.74,0.72],[0.33,0.32,0.36,0.35,0.37,0.39,0.42,0.38,0.38,0.4,0.4,0.41,0.42,0.43,0.42,0.44,0.44,0.44,0.46,0.45,0.46,0.48,0.46,0.48,0.47,0.49,0.49,0.51,0.51,0.52,0.56,0.58],[0.598,0.592,0.553,0.546,0.532,0.499,0.499,0.498,0.495,0.485,0.477,0.45,0.443,0.439,0.427,0.415,0.412,0.398,0.384,0.382,0.379,0.367,0.356,0.352,0.338,0.331,0.308,0.304,0.277,0.259,0.182,0.136]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Entidad","Zona","ODS 4","ODS 8","Score"]},"type":"table"},{"cells":{"align":"center","fill":{"color":[["#06ADD9","#06ADD9","#06ADD9","#06ADD9","#06ADD9","#E11284","#E11284","#D3F7EB","#E11284","#E11284","#06ADD9","#E11284","#06ADD9","#E11284","#D3F7EB","#D3F7EB","#E11284","#D3F7EB","#E11284","#06ADD9","#D3F7EB","#E11284","#D3F7EB","#D3F7EB","#D3F7EB","#E11284","#E11284","#D3F7EB","#E11284","#D3F7EB","#D3F7EB","#E11284"]]},"values":[["Chiapas","Oaxaca","Guerrero","Veracruz","Tabasco","Michoac\u00e1n","Puebla","Zacatecas","Hidalgo","Nayarit","Campeche","Tlaxcala","Yucat\u00e1n","Guanajuato","Sinaloa","San Luis Potos\u00ed","M\u00e9xico","Tamaulipas","Morelos","Quintana Roo","Durango","Jalisco","Sonora","Chihuahua","Baja California","Colima","Aguascalientes","Coahuila","Quer\u00e9taro","Baja California Sur","Nuevo Le\u00f3n","Ciudad de M\u00e9xico"],["Sur","Sur","Sur","Sur","Sur","Centro","Centro","Norte","Centro","Centro","Sur","Centro","Sur","Centro","Norte","Norte","Centro","Norte","Centro","Sur","Norte","Centro","Norte","Norte","Norte","Centro","Centro","Norte","Centro","Norte","Norte","Centro"],[0.72,0.74,0.78,0.79,0.81,0.8,0.82,0.81,0.83,0.82,0.85,0.84,0.83,0.84,0.84,0.85,0.86,0.85,0.87,0.86,0.86,0.88,0.88,0.87,0.88,0.89,0.92,0.9,0.9,0.91,0.91,0.93],[0.58,0.56,0.52,0.51,0.51,0.49,0.49,0.47,0.48,0.46,0.48,0.46,0.45,0.46,0.44,0.44,0.44,0.42,0.43,0.42,0.41,0.4,0.4,0.38,0.38,0.39,0.42,0.37,0.35,0.36,0.32,0.33],[0.136,0.182,0.259,0.277,0.304,0.308,0.331,0.338,0.352,0.356,0.367,0.379,0.382,0.384,0.398,0.412,0.415,0.427,0.439,0.443,0.45,0.477,0.485,0.495,0.498,0.499,0.499,0.532,0.546,0.553,0.592,0.598]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Entidad","Zona","ODS 4","ODS 8","Score"]},"type":"table"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"updatemenus":[{"buttons":[{"args":[{"visible":[true,false]}],"label":"Mejor desempe\u00f1o","method":"update"},{"args":[{"visible":[false,true]}],"label":"Peor desempe\u00f1o","method":"update"}],"direction":"down"}],"title":{"text":"Estados ordenados por desempe\u00f1o educativo-laboral"}},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('25148065-74c0-4f4c-838e-f54787ee5700');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };            </script>        </div>
+</div>
+</div>
+<p><br><br></p>
+<div id="9caba816" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script>if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.5.0.min.js" integrity="sha256-fHbNLP+GlIXN+efbQec78UkemUz3NJp7UmfGxC1tNxs=" crossorigin="anonymous"></script>                <div id="9a283854-eb8c-41ea-a258-a9179967ab6b" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("9a283854-eb8c-41ea-a258-a9179967ab6b")) {                    Plotly.newPlot(                        "9a283854-eb8c-41ea-a258-a9179967ab6b",                        [{"cells":{"align":"center","fill":{"color":[["#59BA47","#59BA47","#59BA47","#59BA47","#59BA47","#59BA47","#59BA47","#59BA47"]]},"font":{"size":12},"values":[["Ciudad de M\u00e9xico","Nuevo Le\u00f3n","Baja California Sur","Quer\u00e9taro","Coahuila","Aguascalientes","Colima","Baja California"],["Centro","Norte","Norte","Centro","Norte","Centro","Centro","Norte"],[0.598,0.592,0.553,0.546,0.532,0.499,0.499,0.498]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","Score"]},"visible":true,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#FEB614","#FEB614","#FEB614","#FEB614","#FEB614","#FEB614","#FEB614","#FEB614"]]},"font":{"size":12},"values":[["Chihuahua","Sonora","Jalisco","Durango","Quintana Roo","Morelos","Tamaulipas","M\u00e9xico"],["Norte","Norte","Centro","Norte","Sur","Centro","Norte","Centro"],[0.495,0.485,0.477,0.45,0.443,0.439,0.427,0.415]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","Score"]},"visible":false,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#F36E29","#F36E29","#F36E29","#F36E29","#F36E29","#F36E29","#F36E29","#F36E29"]]},"font":{"size":12},"values":[["San Luis Potos\u00ed","Sinaloa","Guanajuato","Yucat\u00e1n","Tlaxcala","Campeche","Nayarit","Hidalgo"],["Norte","Norte","Centro","Sur","Centro","Sur","Centro","Centro"],[0.412,0.398,0.384,0.382,0.379,0.367,0.356,0.352]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","Score"]},"visible":false,"type":"table"},{"cells":{"align":"center","fill":{"color":[["#E6213C","#E6213C","#E6213C","#E6213C","#E6213C","#E6213C","#E6213C","#E6213C"]]},"font":{"size":12},"values":[["Zacatecas","Puebla","Michoac\u00e1n","Tabasco","Veracruz","Guerrero","Oaxaca","Chiapas"],["Norte","Centro","Centro","Sur","Sur","Sur","Sur","Sur"],[0.338,0.331,0.308,0.304,0.277,0.259,0.182,0.136]]},"header":{"align":"center","fill":{"color":"#1F2A44"},"font":{"color":"white","size":14},"values":["Estado","Zona","Score"]},"visible":false,"type":"table"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"updatemenus":[{"buttons":[{"args":[{"visible":[true,false,false,false]},{"title":"Categor\u00eda: Alto desempe\u00f1o"}],"label":"Alto desempe\u00f1o","method":"update"},{"args":[{"visible":[false,true,false,false]},{"title":"Categor\u00eda: Intermedio alto"}],"label":"Intermedio alto","method":"update"},{"args":[{"visible":[false,false,true,false]},{"title":"Categor\u00eda: Intermedio bajo"}],"label":"Intermedio bajo","method":"update"},{"args":[{"visible":[false,false,false,true]},{"title":"Categor\u00eda: Rezago estructural"}],"label":"Rezago estructural","method":"update"}]}],"title":{"text":"Estados clasificados por categorias de desempe\u00f1o"}},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('9a283854-eb8c-41ea-a258-a9179967ab6b');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };            </script>        </div>
+</div>
+</div>
+<p><br><br></p>
+</section>
+<section id="una-mirada-territorial" class="level1">
+<h1>Una mirada territorial</h1>
+<p>Las diferencias entre norte, centro y sur muestran que el contexto territorial influye significativamente en los resultados.</p>
+<div id="dcfc6144" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script>if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.5.0.min.js" integrity="sha256-fHbNLP+GlIXN+efbQec78UkemUz3NJp7UmfGxC1tNxs=" crossorigin="anonymous"></script>                <div id="45f95d49-ae3e-423f-89ba-e9d826bce164" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("45f95d49-ae3e-423f-89ba-e9d826bce164")) {                    Plotly.newPlot(                        "45f95d49-ae3e-423f-89ba-e9d826bce164",                        [{"colorscale":[[0.0,"#E11284"],[1.0,"#E11284"]],"featureidkey":"properties.name","geo":"geo","geojson":"https:\u002f\u002fraw.githubusercontent.com\u002fangelnmara\u002fgeojson\u002fmaster\u002fmexicoHigh.json","hovertemplate":"Zona=Centro\u003cbr\u003eentidad=%{location}\u003cextra\u003e\u003c\u002fextra\u003e","locations":["Aguascalientes","Colima","Ciudad de M\u00e9xico","Guanajuato","Hidalgo","Jalisco","M\u00e9xico","Michoac\u00e1n","Morelos","Nayarit","Puebla","Quer\u00e9taro","Tlaxcala"],"name":"Centro","showlegend":true,"showscale":false,"z":[1,1,1,1,1,1,1,1,1,1,1,1,1],"type":"choropleth"},{"colorscale":[[0.0,"#D3F7EB"],[1.0,"#D3F7EB"]],"featureidkey":"properties.name","geo":"geo","geojson":"https:\u002f\u002fraw.githubusercontent.com\u002fangelnmara\u002fgeojson\u002fmaster\u002fmexicoHigh.json","hovertemplate":"Zona=Norte\u003cbr\u003eentidad=%{location}\u003cextra\u003e\u003c\u002fextra\u003e","locations":["Baja California","Baja California Sur","Coahuila","Chihuahua","Durango","Nuevo Le\u00f3n","San Luis Potos\u00ed","Sinaloa","Sonora","Tamaulipas","Zacatecas"],"name":"Norte","showlegend":true,"showscale":false,"z":[1,1,1,1,1,1,1,1,1,1,1],"type":"choropleth"},{"colorscale":[[0.0,"#06ADD9"],[1.0,"#06ADD9"]],"featureidkey":"properties.name","geo":"geo","geojson":"https:\u002f\u002fraw.githubusercontent.com\u002fangelnmara\u002fgeojson\u002fmaster\u002fmexicoHigh.json","hovertemplate":"Zona=Sur\u003cbr\u003eentidad=%{location}\u003cextra\u003e\u003c\u002fextra\u003e","locations":["Campeche","Chiapas","Guerrero","Oaxaca","Quintana Roo","Tabasco","Veracruz","Yucat\u00e1n"],"name":"Sur","showlegend":true,"showscale":false,"z":[1,1,1,1,1,1,1,1],"type":"choropleth"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"geo":{"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"center":{},"fitbounds":"locations","visible":false,"showcoastlines":true},"legend":{"title":{"text":"Zona"},"tracegroupgap":0},"title":{"text":"Ubicaci\u00f3n de entidades por zona geogr\u00e1fica","font":{"size":16}}},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('45f95d49-ae3e-423f-89ba-e9d826bce164');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };            </script>        </div>
+</div>
+</div>
+<div id="31bf27cf" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script>if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.5.0.min.js" integrity="sha256-fHbNLP+GlIXN+efbQec78UkemUz3NJp7UmfGxC1tNxs=" crossorigin="anonymous"></script>                <div id="115410b0-c84b-4f99-96e7-de953899ed30" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("115410b0-c84b-4f99-96e7-de953899ed30")) {                    Plotly.newPlot(                        "115410b0-c84b-4f99-96e7-de953899ed30",                        [{"colorscale":[[0.0,"#59BA47"],[1.0,"#59BA47"]],"featureidkey":"properties.name","geo":"geo","geojson":"https:\u002f\u002fraw.githubusercontent.com\u002fangelnmara\u002fgeojson\u002fmaster\u002fmexicoHigh.json","hovertemplate":"categoria=Alto desempe\u00f1o\u003cbr\u003eentidad=%{location}\u003cextra\u003e\u003c\u002fextra\u003e","locations":["Aguascalientes","Baja California","Baja California Sur","Coahuila","Colima","Ciudad de M\u00e9xico","Nuevo Le\u00f3n","Quer\u00e9taro"],"name":"Alto desempe\u00f1o","showlegend":true,"showscale":false,"z":[1,1,1,1,1,1,1,1],"type":"choropleth"},{"colorscale":[[0.0,"#F36E29"],[1.0,"#F36E29"]],"featureidkey":"properties.name","geo":"geo","geojson":"https:\u002f\u002fraw.githubusercontent.com\u002fangelnmara\u002fgeojson\u002fmaster\u002fmexicoHigh.json","hovertemplate":"categoria=Intermedio bajo\u003cbr\u003eentidad=%{location}\u003cextra\u003e\u003c\u002fextra\u003e","locations":["Campeche","Guanajuato","Hidalgo","Nayarit","San Luis Potos\u00ed","Sinaloa","Tlaxcala","Yucat\u00e1n"],"name":"Intermedio bajo","showlegend":true,"showscale":false,"z":[1,1,1,1,1,1,1,1],"type":"choropleth"},{"colorscale":[[0.0,"#E6213C"],[1.0,"#E6213C"]],"featureidkey":"properties.name","geo":"geo","geojson":"https:\u002f\u002fraw.githubusercontent.com\u002fangelnmara\u002fgeojson\u002fmaster\u002fmexicoHigh.json","hovertemplate":"categoria=Rezago estructural\u003cbr\u003eentidad=%{location}\u003cextra\u003e\u003c\u002fextra\u003e","locations":["Chiapas","Guerrero","Michoac\u00e1n","Oaxaca","Puebla","Tabasco","Veracruz","Zacatecas"],"name":"Rezago estructural","showlegend":true,"showscale":false,"z":[1,1,1,1,1,1,1,1],"type":"choropleth"},{"colorscale":[[0.0,"#FEB614"],[1.0,"#FEB614"]],"featureidkey":"properties.name","geo":"geo","geojson":"https:\u002f\u002fraw.githubusercontent.com\u002fangelnmara\u002fgeojson\u002fmaster\u002fmexicoHigh.json","hovertemplate":"categoria=Intermedio alto\u003cbr\u003eentidad=%{location}\u003cextra\u003e\u003c\u002fextra\u003e","locations":["Chihuahua","Durango","Jalisco","M\u00e9xico","Morelos","Quintana Roo","Sonora","Tamaulipas"],"name":"Intermedio alto","showlegend":true,"showscale":false,"z":[1,1,1,1,1,1,1,1],"type":"choropleth"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"geo":{"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"center":{},"fitbounds":"locations","visible":false},"legend":{"title":{"text":"categoria"},"tracegroupgap":0},"title":{"text":"Desempe\u00f1o educativo-laboral por estado"}},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('115410b0-c84b-4f99-96e7-de953899ed30');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };            </script>        </div>
+</div>
+</div>
+<p>Esta clasificación revela que el desarrollo no es uniforme.</p>
+<p>Existen estados donde la educación no se traduce completamente en mejores condiciones laborales, así como otros donde ambos indicadores avanzan de forma alineada.</p>
+</section>
+<section id="diferencias-regionales" class="level1">
+<h1>Diferencias regionales</h1>
+<p>Al observar los datos por región, emergen patrones territoriales que ayudan a entender mejor cómo se distribuyen estas dinámicas en el país.</p>
+<div id="98c13fcb" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script>if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.5.0.min.js" integrity="sha256-fHbNLP+GlIXN+efbQec78UkemUz3NJp7UmfGxC1tNxs=" crossorigin="anonymous"></script>                <div id="d794eb17-cff0-41b4-90e8-c221fadf6e54" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("d794eb17-cff0-41b4-90e8-c221fadf6e54")) {                    Plotly.newPlot(                        "d794eb17-cff0-41b4-90e8-c221fadf6e54",                        [{"labels":["Alto desempe\u00f1o","Intermedio alto","Intermedio bajo","Rezago estructural"],"marker":{"colors":["#59BA47","#FEB614","#F36E29","#E6213C"]},"textinfo":"percent+label","values":{"dtype":"i1","bdata":"BAQCAQ=="},"type":"pie","domain":{"x":[0.0,0.2888888888888889],"y":[0.0,1.0]}},{"labels":["Alto desempe\u00f1o","Intermedio alto","Intermedio bajo","Rezago estructural"],"marker":{"colors":["#59BA47","#FEB614","#F36E29","#E6213C"]},"textinfo":"percent+label","values":{"dtype":"i1","bdata":"BAMEAg=="},"type":"pie","domain":{"x":[0.35555555555555557,0.6444444444444445],"y":[0.0,1.0]}},{"labels":["Alto desempe\u00f1o","Intermedio alto","Intermedio bajo","Rezago estructural"],"marker":{"colors":["#59BA47","#FEB614","#F36E29","#E6213C"]},"textinfo":"percent+label","values":{"dtype":"i1","bdata":"AAECBQ=="},"type":"pie","domain":{"x":[0.7111111111111111,1.0],"y":[0.0,1.0]}}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"annotations":[{"font":{"size":16},"showarrow":false,"text":"Norte","x":0.14444444444444446,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"Centro","x":0.5,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"Sur","x":0.8555555555555556,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"}],"title":{"text":"Distribuci\u00f3n por regi\u00f3n"}},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('d794eb17-cff0-41b4-90e8-c221fadf6e54');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };            </script>        </div>
+</div>
+</div>
+<p>Esto refuerza la idea de que las estrategias deben adaptarse a cada región, en lugar de aplicar soluciones uniformes.</p>
+<p>Finalmente, el mapa permite visualizar estas diferencias directamente sobre el territorio.</p>
+<p>Aquí es donde los datos se conectan con la realidad: cada estado refleja una combinación única de condiciones.</p>
+</section>
+<section id="por-qué-importa-esto" class="level1">
+<h1>¿Por qué importa esto?</h1>
+<p>Este análisis no busca establecer relaciones causales definitivas, sino ofrecer una forma más integrada de entender el desarrollo.</p>
+<p>Al identificar patrones entre indicadores, se abre la puerta a diseñar políticas públicas más coordinadas, enfocadas en el territorio y basadas en evidencia.</p>
+<p>Porque los problemas no ocurren por separado, y las soluciones tampoco deberían hacerlo.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

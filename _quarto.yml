@@ -1,7 +1,16 @@
 project:
-  type: default
+  type: website
   render:
-    - dashboard/index.qmd
+    - dashboard/*.qmd
+
+website:
+  title: "HackODS · Pumitas Prime"
+  navbar:
+    left:
+      - text: "Inicio"
+        file: dashboard/index.qmd
+      - text: "Análisis ODS 4 vs ODS 8"
+        file: dashboard/correlacion8y4.qmd
 
 format:
   html:
