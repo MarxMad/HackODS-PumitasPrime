@@ -1,9 +1,16 @@
----
-title: "Análisis territorial: Educación y empleo informal"
-format: html
-execute:
-  echo: false
----
+
+<div class="header">
+
+  <h1>Análisis territorial: Educación y empleo informal</h1>
+
+  <h2>Correlaciones entre ODS</h2>
+
+  <p>
+  Educación (4) y Trabajo decente (8)
+  </p>
+
+
+</div>
 
 # ¿Qué está pasando en México?
 
@@ -17,7 +24,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import numpy as np
 
-df = pd.read_csv("../data/indicadores_ods_demo.csv")
+df = pd.read_csv("../data/indicadores_ods.csv")
 
 df = df.rename(columns={
     "ods_4_finalizacion_prim_sec_prep": "ods4",

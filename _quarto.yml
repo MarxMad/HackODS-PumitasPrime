@@ -1,20 +1,20 @@
 project:
   type: default
-  # Convención HACKODS: tablero principal en dashboard/index.qmd
   render:
-    - dashboard/*.qmd
+    - dashboard/index.qmd
 
 format:
   html:
-    theme: sandstone
-    toc: true
+    theme: flatly
+    css: dashboard/styles.css
+    page-layout: full
+    toc: false
     lang: es
-    fig-width: 10
-    fig-height: 7
+    code-fold: false
+    code-tools: false
 
 execute:
-  echo: true
+  echo: false
   warning: false
-  cwd: project
 
 jupyter: python3

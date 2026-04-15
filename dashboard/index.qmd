@@ -1,27 +1,55 @@
----
-title: "Correlaciones entre ODS — Pumitas Prime (HACKODS UNAM)"
-subtitle: "Educación (4), trabajo decente (8), industria e innovación (9), desigualdad (10) y ciudades (11)"
-author: "Tu equipo"
-date: today
-lang: es
-format:
-  html:
-    code-fold: true
-    theme: sandstone
-    toc: true
----
+
+<div class="header">
+
+  <h1>Pumitas Prime - HACKODS UNAM</h1>
+
+  <h2>Correlaciones entre ODS</h2>
+
+  <p>
+  Educación (4), trabajo decente (8), industria e innovación (9), 
+  desigualdad (10) y ciudades (11)
+  </p>
+
+   <p class="header-meta-row">
+    <span>Equipo: Tu equipo</span>
+    <span>Fecha: Abril 2026</span>
+  </p>
+
+</div>
+
+
 
 ## Línea del proyecto
 
-Este tablero apoya una **pregunta de política pública**: *¿en qué estados los indicadores de educación (ODS 4), trabajo decente (ODS 8), innovación (ODS 9), desigualdad (ODS 10) y ciudad (ODS 11) **suelen ir de la mano***, de forma que convenga plantear **respuestas coordinadas entre dependencias** y **pilotos territoriales** en lugar de solo escalar un programa aislado? La evidencia aquí es **asociativa** (correlación): sirve para **priorizar** y **dialogar en gabinete**; la **causalidad** se aborda con evaluaciones y diseños empíricos posteriores.
-
-**¿Quién lo usa y para qué?** Titulares y equipos técnicos de política social, economía, educación, ciencia y desarrollo urbano (diagnóstico y priorización); investigación aplicada (delimitar preguntas evaluables); y divulgación. Referencia de metas: [Correlacionobjetivos](../Correlacionobjetivos.md).
-
-::: callout-note
-Los valores del archivo `data/indicadores_ods_demo.csv` son **ilustrativos** (montados para el hackathon). Para el entregable final, sustitúyelos por series oficiales desde [agenda2030.mx](https://agenda2030.mx) / INEGI, con el mismo formato de columnas.
+::: {.custom-box}
+Este tablero apoya una **pregunta de política pública**: *¿en qué estados los indicadores de educación (ODS 4), trabajo decente (ODS 8), innovación (ODS 9), desigualdad (ODS 10) y ciudad (ODS 11) **suelen ir de la mano***, de forma que convenga plantear **respuestas coordinadas entre dependencias** y **pilotos territoriales** en lugar de solo escalar un programa aislado? 
 :::
 
+:::: {.columns}
+
+::: {.column width="40%"}
+::: {.custom-box}
+La evidencia aquí es **asociativa** (correlación): sirve para **priorizar** y **dialogar en gabinete**; la **causalidad** se aborda con evaluaciones y diseños empíricos posteriores. 
+:::
+:::
+
+::: {.column width="60%"}
+::: {.custom-box}
+**¿Quién lo usa y para qué?** Titulares y equipos técnicos de política social, economía, educación, ciencia y desarrollo urbano (diagnóstico y priorización); investigación aplicada (delimitar preguntas evaluables); y divulgación. Referencia de metas: [Correlacionobjetivos](../Correlacionobjetivos.md).
+:::
+:::
+
+::::
+
+
+::: callout-note
+Los valores del archivo `data/indicadores_ods_demo.csv` son **ilustrativos** (montados para el hackathon). Para el entregable final, se sustituirán por series oficiales desde [agenda2030.mx](https://agenda2030.mx) / INEGI, con el mismo formato de columnas, el avance homologado se encuentra en `data/indicadores_ods.csv`.
+:::
+
+
 ## ODS e indicadores (lectura visual)
+
+<div class="caja-ods">
 
 <table>
 <tr>
@@ -35,28 +63,30 @@ Los valores del archivo `data/indicadores_ods_demo.csv` son **ilustrativos** (mo
 <a href="https://www.un.org/sustainabledevelopment/es/economic-growth/">
 <img src="https://img.shields.io/badge/ODS_8-Trabajo_decente-A21942?style=for-the-badge" alt="ODS 8" />
 </a>
-<br/><sub>Empleo, productividad, informalidad</sub>
+<br/><sub>Empleo, productividad, informalidad<br><br></sub>
 </td>
 <td width="20%" align="center">
 <a href="https://www.un.org/sustainabledevelopment/es/infrastructure/">
 <img src="https://img.shields.io/badge/ODS_9-Industria_e_innovación-FD6925?style=for-the-badge" alt="ODS 9" />
 </a>
-<br/><sub>I+D, manufactura, tecnología</sub>
+<br/><sub>I+D, manufactura, tecnología<br><br></sub>
 </td>
 <td width="20%" align="center">
 <a href="https://www.un.org/sustainabledevelopment/es/inequality/">
 <img src="https://img.shields.io/badge/ODS_10-Reducción_desigualdades-DD1367?style=for-the-badge" alt="ODS 10" />
 </a>
-<br/><sub>Ingreso, pobreza relativa</sub>
+<br/><sub>Ingreso, pobreza relativa<br><br></sub>
 </td>
 <td width="20%" align="center">
 <a href="https://www.un.org/sustainabledevelopment/es/cities/">
 <img src="https://img.shields.io/badge/ODS_11-Ciudades_sostenibles-FD9D24?style=for-the-badge" alt="ODS 11" />
 </a>
-<br/><sub>Vivienda y entorno urbano</sub>
+<br/><sub>Vivienda y entorno urbano<br><br></sub>
 </td>
 </tr>
 </table>
+
+</div>
 
 | Columna en el CSV | Qué mide (proxy en el prototipo) |
 | --- | --- |
@@ -66,25 +96,39 @@ Los valores del archivo `data/indicadores_ods_demo.csv` son **ilustrativos** (mo
 | `ods_10_pobreza_50_mediana` | Población bajo el 50% de la mediana de ingreso (%). |
 | `ods_11_vivienda_precaria` | Vivienda precaria urbana (%). |
 
-```mermaid
+```{mermaid}
 flowchart LR
-  subgraph foco["Enfoque del tablero"]
-    A["ODS 4<br/>Educación"]
-    B["ODS 8<br/>Trabajo decente"]
-    C["ODS 9<br/>Industria / innovación"]
-    D["ODS 10<br/>Desigualdad"]
-    E["ODS 11<br/>Ciudades"]
-  end
-  A <--> B
-  A <--> C
-  B <--> D
-  C <--> E
-  D <--> E
-  A -. indicadores por entidad .-> M[("Matriz de<br/>correlación")]
-  B -. Pearson + scatter .-> M
-  C -. Pearson + scatter .-> M
-  D -. Pearson + scatter .-> M
-  E -. Pearson + scatter .-> M
+
+%% ----- NODOS -----
+A["ODS 4<br/>Educación"]
+B["ODS 8<br/>Trabajo decente"]
+C["ODS 9<br/>Industria e innovación"]
+D["ODS 10<br/>Reducción de desigualdad"]
+E["ODS 11<br/>Ciudades sostenibles"]
+M[("Matriz de correlación")]
+
+%% ----- RELACIONES -----
+A <--> B
+A <--> C
+B <--> D
+C <--> E
+D <--> E
+
+A -. Indicadores por entidad .-> M
+B -. Pearson + scatter .-> M
+C -. Pearson + scatter .-> M
+D -. Pearson + scatter .-> M
+E -. Pearson + scatter .-> M
+
+%% ----- ESTILOS ODS -----
+style A fill:#C5192D,color:#fff,stroke:#333,stroke-width:1px
+style B fill:#A21942,color:#fff,stroke:#333,stroke-width:1px
+style C fill:#FD6925,color:#fff,stroke:#333,stroke-width:1px
+style D fill:#DD1367,color:#fff,stroke:#fff,stroke-width:1px
+style E fill:#FD9D24,color:#fff,stroke:#333,stroke-width:1px
+
+%% ----- MATRIZ -----
+style M fill:#f5f5f5,color:#333,stroke:#999,stroke-dasharray: 5,5
 ```
 
 > **Nota:** la correlación describe **co-movimiento** entre estados; no atribuye efectos a políticas concretas.
@@ -127,13 +171,6 @@ etiquetas = {
 
 cols_num = list(etiquetas.keys())
 df_corr = df[cols_num].copy()
-```
-
-## Vista rápida de los datos
-
-```{python}
-#| label: tbl-preview
-df.rename(columns=etiquetas).head(8)
 ```
 
 ## Matriz de correlación (Pearson)
